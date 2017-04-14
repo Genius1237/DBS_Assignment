@@ -1,0 +1,35 @@
+GET /public/signin - GET to / redirected to this
+
+GET /public/signup - create account page
+
+GET /public/home - home page when signed in
+
+GET /public/buy
+
+GET /public/sell
+
+GET /public/settings - account settings page
+
+GET /public/posts - Page to edit posts
+
+GET /search?query=
+
+
+
+POST /signin - signin
+
+POST /users - sign up
+
+PUT /users - change acc setings
+
+POST /books - put up book for sale or buy
+
+POST /items - put up item for sale or buy
+
+POST /books - edit book
+
+POST /items - edit item
+
+DELETE /books - delete book
+
+DELETE /items - delete item
