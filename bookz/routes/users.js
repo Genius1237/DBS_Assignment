@@ -3,7 +3,7 @@ var crypto=require('crypto');
 var router = express.Router();
 
 //POST request, for login
-router.post('/login', function(req, res, next) {
+router.post('/signin', function(req, res, next) {
 	var username=req.body.username;
 	var password=req.body.password;
 	if (username != null && password != null) {

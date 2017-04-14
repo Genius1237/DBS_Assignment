@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', auth);
 app.use('/users', users);
 app.use('/books',books);
-app.use('/public/',public);
+app.use('/public',public);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

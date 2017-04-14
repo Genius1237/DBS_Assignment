@@ -6,8 +6,8 @@ var router = express.Router();
 
 //Verify Cookie
 router.use('/', function(req, res, next) {
-  if (!(req.path === '/users/login' || req.path === '/users/signup')){
-  	console.log(req.path);
+  if (!(req.path === '/public/signin' || req.path === '/public/signup'|| (req.path==='/users'&&req.method==='POST')||(req.path==='/signin'))){
+  	console.log('Redirecting from: '+req.path);
 
   	//Do Cookie extraction and verification here
   	
@@ -15,21 +15,9 @@ router.use('/', function(req, res, next) {
   	var token = req.get('Authentication');
     jwt.verify(token, data.key, function (err, decoded) {
         if (err) {
-            if (err.name == 'TokenExpiredError') {
-                var message = {
-                    "message": data.expiredTokenError
-                }
-                res.send(message);
-                res.end();
-
-            } else {
-                var message = {
-                   "message": data.invalidTokenError
-                }
-                res.send(message);
-                res.end();
+            res.redirect('/public/signin');
             }
-    	}else{
+        else{
         	next();
         }
 	});
