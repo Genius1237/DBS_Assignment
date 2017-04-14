@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheet/buy_sell.css">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheet/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <% include templates/header %>
+    <div id="hr"></div>
+    <button type="button" id="book-button">Book</button>
+    <p id="delimiter">|</p>
+    <button type="button" id="item-button">Item</button>
+
+    <form id="book-form">
+
+      <p id="form-title">Fill in the details of the book that you want to buy</p>
+      <table>
+        <tr>
+          <td><label>Title</label></td>
+          <td><input type="text" name="title"></td>
+        </tr>
+
+        <tr>
+          <td><label>Author</label></td>
+          <td><input type="text" name="author"></td>
+        </tr>
+
+        <tr>
+          <td><label>Publisher</label></td>
+          <td><input type="text" name="publisher"></td>
+        </tr>
+
+        <tr>
+          <td><label>Edition</label></td>
+          <td><input type="text" name="edition"></td>
+        </tr>
+
+        <tr>
+          <td><label>Year of publishing</label></td>
+          <td><input type="text" name="yop"></td>
+        </tr>
+
+        <tr>
+          <td><label>Condition</label></td>
+          <td><input type="text" name="condition"></td>
+        </tr>
+
+      </table>
+    </form>
+
+    <form id="item-form">
+      <p id="form-title">Fill in the details of the item that you want to buy</p>
+      <table>
+
+        <tr>
+          <td><label>Name</label></td>
+          <td><input type="text" name="name"></td>
+        </tr>
+
+        <tr>
+          <td><label>Description</label></td>
+          <td><input type="text" name="description"></td>
+        </tr>
+        
+      </table>
+    </form>
+
+    <button type="button" id="buy-sell-button">Buy</button>
+
+    <script src="http://localhost:3000/scripts/buy_sell.js"></script>
+    <script src="http://localhost:3000/scripts/header.js"></script>
+  </body>
+
+</html>

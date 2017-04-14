@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheet/signin.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+  <body>
+    
+    <!-- Left section begin -->
+    <div id="left-section">
+      <h2>Welcome to buy and sell</h2>
+    </div>
+    <!-- Left section end -->
+
+    <!-- Right section begin -->
+    <div id="right-section"> 
+      <p class="extra-info">Sign in below or <a href="http://localhost:3000/public/signup">Sign Up</a></p>
+      <form>
+        
+        <table>
+          <tr>
+            <td><input type="text" name="username"></td>
+            <td><p class="onhover-info" id="username-alert">Username must be between 8 and 20 characters</p></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="password"></td>
+            <td><p class="onhover-info" id="password-alert">Password must be between 8 and 20 characters and consist of numbers too</p></td>
+          </tr>
+        </table>
+        <button type="button" id="signin-button">Sign in</button>
+        <p id="request-status">Submitting..</p>
+      
+      </form>
+    </div>
+    <div id="clearfix"></div>
+    <!-- Right section end -->
+
+    <script src="http://localhost:3000/scripts/signin.js"></script>
+  </body>	
+</html>
