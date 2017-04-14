@@ -12,6 +12,16 @@ var books=require('./routes/books');
 
 var app = express();
 
+var mysql=require('mysql');
+var	myConnection=require('express-myconnection');
+var	connection = {
+		host	 :  '127.0.0.1',
+		port	 :  3306,
+		user     : 'bookz' ,
+		password : '1234567890',
+		database : 'bookz'
+	};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,6 +29,7 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(myConnection(mysql,connection,'single'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
