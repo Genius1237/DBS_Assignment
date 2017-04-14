@@ -1,0 +1,20 @@
+<div id="header">
+  
+  <p id="greeting">Hi <%= user %>, what do you need?</p>
+  
+  <input type="text" name="query" id="search-bar">
+  
+  <button id="drop-down-button">==</button>
+  
+  <div id="drop-down-content"> <!-- Positioned wrt #header because #header is positioned -->
+    <ul>
+      <li><a href="http://localhost:3000/public/home">Home</a></li>
+      <li><a href="http://localhost:3000/public/sell">Sell</a></li>
+      <li><a href="http://localhost:3000/public/buy">Buy</a></li>
+      <li><a href="http://localhost:3000/public/posts">Edit Posts</a></li>
+      <li><a href="http://localhost:3000/public/settings">Account Settings</a></li>
+      <li><a href="http://localhost:3000/signout">Sign Out</a></li>
+    </ul>
+  </div>
+
+</div>
