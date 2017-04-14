@@ -9,10 +9,9 @@
 }
 
 #search-option {
-  padding: 7px;
   margin-left: 10px;
   border: 4px;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: white;
 }
 
@@ -84,6 +83,7 @@
   border-radius: 4px;
   display: inline-block;
   font-family: 'Roboto';
+  cursor: pointer;
 }
 
 #search-bar {
@@ -92,4 +92,9 @@
 
 #search-form {
   display: inline;
+}
+
+#search-form option {
+  padding: 7px;
+  font-family: 'Roboto';
 }
