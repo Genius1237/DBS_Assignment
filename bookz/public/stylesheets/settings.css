@@ -3,10 +3,6 @@ body {
   margin: auto;
 }
 
-form {
-  padding-left: 400px;
-}
-
 input {
   width: 170px;
   color: gray;
@@ -78,4 +74,9 @@ h2 {
   transition: box-shadow 0.2s ease-in 0s;
   margin-left: 480px;
   display: inline-block;
+  cursor: pointer;
+}
+
+#account-details-form {
+  margin-left: 380px;
 }

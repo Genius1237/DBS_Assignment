@@ -96,3 +96,7 @@ form textarea {
   margin-left: 8px;
   font-family: 'Roboto';
 }
+
+button {
+  cursor: pointer;
+}
