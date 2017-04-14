@@ -1,0 +1,88 @@
+body {
+  max-width: 1080px;
+  margin: auto;
+  padding-top: 10px;
+}
+
+form input {
+  width: 250px;
+  color: gray;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 2px;
+  margin-left: 17px;
+}
+
+form {
+  margin: auto;
+  width: 400px;
+}
+
+tr {
+  height: 80px;
+}
+
+td {
+  text-align: right;
+}
+
+label {
+  font-family: 'Roboto';
+}
+
+#hr {
+  margin-top: 70px;
+  height: 1px;
+  z-index: 0;
+  background-color: black;
+}
+
+#book-button, #item-button {
+  border: 0px;
+  padding: 8px 25px 8px 25px;
+  background-color: white;
+  transition: background-color 0.2s ease-in 0s;
+  border-radius: 2px;
+  color: black;
+}
+
+#buy-sell-button {
+  margin: auto;
+  width: 100px;
+  display: block;
+  border: 1px solid #005ce6;
+  background-color: #005ce6;
+  padding: 8px 28px 8px 28px;
+  border-radius: 2px;
+  color: white;
+  margin-bottom: 8px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+#delimiter {
+  display: inline-block;
+}
+
+#item-form {
+  display: none;
+}
+
+#book-form {
+  display: none;
+}
+
+#request-status {
+  visibility: hidden;
+  background-color: #ff001b;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+  display: inline-block;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+#form-title {
+  font-family: 'Roboto';
+  font-size: 25px;
+}

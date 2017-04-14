@@ -1,0 +1,87 @@
+html {
+  height: 100%;
+  background-color: white;
+}
+
+body {
+	max-width: 1080px;
+  margin: auto;
+  margin-top: 190px;
+  position: relative;
+}
+
+#left-section {
+  float: left;
+  width: 480px;
+}
+
+#left-section h2 {
+  font-family: 'Roboto';
+  line-height: 40px;
+  color: black;
+  font-weight: 200;
+  font-size: 35px;
+  margin-top: 100px;
+}
+
+#right-section {
+	border-left: 1px solid black;
+  width: 500px;
+  float: left;
+  position: relative;
+  padding-left: 40px;
+}
+
+.onhover-info {
+  opacity: 0;
+  transition: opacity 0.2s ease-in 0s;
+  background-color:  #00b300;
+  color: white;
+  width: 300px;
+  font-size: 14px;
+  padding: 8px;
+  margin-left: 4px;
+  border-radius: 4px;
+}
+
+input {
+  width: 170px;
+  color: gray;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+#clearfix {
+  clear: both;
+}
+
+button {
+  border: 1px solid #005ce6;
+  background-color: #005ce6;
+  padding: 8px;
+  border-radius: 2px;
+  color: white;
+  width: 80px;
+  margin-left: 4px;
+  transition: box-shadow 0.2s ease-in 0s;
+}
+
+tr {
+  height: 80px;
+}
+
+p {
+  font-family: 'Roboto';
+}
+
+#request-status {
+  visibility: hidden;
+  background-color: #ff001b;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+  display: inline-block;
+  border-radius: 4px;
+  margin-left: 8px;
+}

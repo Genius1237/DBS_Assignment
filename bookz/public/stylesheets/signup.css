@@ -1,0 +1,63 @@
+body {
+  width: 1080px;
+  margin: auto;
+}
+
+button {
+  border: 1px solid #005ce6;
+  background-color: #005ce6;
+  padding: 8px;
+  border-radius: 2px;
+  color: white;
+  transition: box-shadow 0.2s ease-in 0s;
+  margin-left: 4px;
+}
+
+form {
+  padding-left: 400px;
+}
+
+input {
+  width: 170px;
+  color: gray;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+tr {
+  height: 80px;
+}
+
+p {
+  font-family: 'Roboto';
+}
+
+h2 {
+  font-family: 'Roboto';
+  padding-left: 440px; 
+}
+
+.onhover-info {
+  opacity: 0;
+  transition: opacity 0.2s ease-in 0s;
+  background-color:  #00b300;
+  color: white;
+  width: 300px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  padding: 8px 8px 8px 8px;
+  margin-left: 4px;
+  border-radius: 4px;
+}
+
+#request-status {
+  visibility: hidden;
+  background-color: #ff001b;
+  padding: 8px;
+  font-size: 14px;
+  color: white;
+  display: inline-block;
+  border-radius: 4px;
+  margin-left: 8px;
+}
