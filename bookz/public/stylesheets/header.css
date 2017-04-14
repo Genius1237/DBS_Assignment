@@ -66,6 +66,7 @@
 }
 
 #drop-down-content a {
+  transition: color 0.2s ease-in 0s;
   text-decoration: none;
   font-family: 'Roboto';
   color: black;
