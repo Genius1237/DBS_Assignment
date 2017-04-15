@@ -3,7 +3,6 @@ var crypto=require('crypto');
 var db=require('../misc/database');
 var key=require('../misc/constants').key;
 var jwt=require('jsonwebtoken');
-var Regex=require('regex');
 var router = express.Router();
 
 //POST request, for login
@@ -92,8 +91,9 @@ router.post('/',function(req,res,next){
 			var connection=db();
 			connection.query('INSERT INTO USER(username,password,name,phone) VALUES(?,?,?,?)',post,function(error){
 				if(error){
+					//console.log(error.code);
 					switch(error.code){
-						case 1062:{ //ER_DUP_ENTRY
+						case 'ER_DUP_ENTRY':{ //ER_DUP_ENTRY
 							res.send({
 								usernameTaken: 'true',
 								valid: 'false'
@@ -101,7 +101,7 @@ router.post('/',function(req,res,next){
 							break;
 						}
 					}
-					console.log(error);
+					//console.log(error);
 				}else{
 					res.json({
 						valid:"true"
@@ -110,6 +110,10 @@ router.post('/',function(req,res,next){
 			});
 		}
     }
+});
+
+router.put('/',function(req,res){
+
 });
 
 module.exports = router;

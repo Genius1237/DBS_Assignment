@@ -1,7 +1,7 @@
 CREATE TABLE USER(
 	_id integer primary key auto_increment,
 	username varchar(50) unique,
-	password varchar(100),
+	password varchar(256),
 	name varchar(50),
 	phone char(10) 
 );
