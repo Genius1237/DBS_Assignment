@@ -1,17 +1,3 @@
-var defaultSearchBarValue = 'Search here';
-
-function onSearchBarFocus(event) {
-  if (event.target.value === defaultSearchBarValue) {
-    event.target.value = '';
-  }
-}
-
-function onSearchBarBlur(event) {
-  if (event.target.value === '') {
-    event.target.value = defaultSearchBarValue;
-  }
-}
-
 function onFocusDropDownButton(event) {
   document.getElementById('drop-down-content').style.visibility = 'visible';
   document.getElementById('drop-down-content').style.opacity = '1';
@@ -47,11 +33,6 @@ function initialise() {
   var dropDownButton = document.getElementById('drop-down-button');
   var searchButton = document.getElementById('search-button');
   var signoutOption = document.getElementById('signout-option');
-
-  // add listeners for modifying value attribute of input
-  searchBar.value = defaultSearchBarValue;
-  searchBar.addEventListener('focus', onSearchBarFocus);
-  searchBar.addEventListener('blur', onSearchBarBlur);
 
   // add listeners to show drop down content on clicking drop down button
   dropDownButton.addEventListener('focus', onFocusDropDownButton);

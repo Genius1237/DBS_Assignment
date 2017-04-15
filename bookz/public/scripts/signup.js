@@ -1,10 +1,3 @@
-var defaultFieldValue = {
-  name: 'Name',
-  username: 'Username',
-  password: 'Password',
-  phone: 'Phone'
-}
-
 var defaultAlertBoxValue = {
   name: 'Name chars',
   username: 'Username chars',
@@ -13,12 +6,6 @@ var defaultAlertBoxValue = {
 }
 
 function onFocus(event) {
-  // make changes to the field value
-  event.target.type = 'password';
-  if (event.target.value == defaultFieldValue[event.target.name]) {
-    event.target.value = '';
-  }
-
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert');
   alertElement.textContent = defaultAlertBoxValue[event.target.name];
@@ -27,14 +14,8 @@ function onFocus(event) {
 }
 
 function onBlur(event) {
-  // make changes to the field value
-  if (event.target.value === '') {
-    event.target.type = 'text';
-    event.target.value = defaultFieldValue[event.target.name];
-  }
-
   // make changes to alert box
-  var alertElement = document.getElementById(event.target.name + '-alert').style.opacity = '0';
+  document.getElementById(event.target.name + '-alert').style.opacity = '0';
 }
 
 function onMouseOver(event) {
@@ -101,17 +82,6 @@ function initialise() {
 
   // add listeners to input fields to respond to focus and blur
   var els = document.getElementsByTagName('input');
-  for (let el of els) {
-    if (el.name === 'name') {
-      el.value = defaultFieldValue.name;
-    } else if (el.name === 'username') {
-      el.value = defaultFieldValue.username;
-    } else if (el.name === 'password') {
-      el.value = defaultFieldValue.password;
-    } else {
-      el.value = defaultFieldValue.phone;
-    }
-
     el.addEventListener('focus', onFocus);
     el.addEventListener('blur', onBlur);
   }
