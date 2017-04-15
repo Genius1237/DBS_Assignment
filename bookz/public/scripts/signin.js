@@ -57,7 +57,7 @@ function onClick(event) {
   
   // make the AJAX request
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/signin');
+  xhr.open('POST', 'http://localhost:3000/users/signin');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   xhr.send(payload);
   

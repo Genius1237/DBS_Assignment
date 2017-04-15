@@ -1,30 +1,34 @@
 var express = require('express');
 var jwt = require('jsonwebtoken');
-var data = require('../misc/constants');
+var key = require('../misc/constants').key;
 
 var router = express.Router();
 
+router.get('/',function(req,res){
+  console.log('Here');
+  if(req.path='/'){
+    res.redirect('/public/home');  
+  }
+});
+
 //Verify Cookie
 router.use('/', function(req, res, next) {
-  if (!(req.path === '/public/signin' || req.path === '/public/signup'|| (req.path==='/users'&&req.method==='POST')||(req.path==='/signin'))){
-  	console.log('Redirecting from: '+req.path);
-
-  	//Do Cookie extraction and verification here
-  	
-  	//Need to change this line
-  	var token = req.get('Authentication');
-    jwt.verify(token, data.key, function (err, decoded) {
+  
+  var token = req.cookies.name;
+    //console.log(token);
+    jwt.verify(token, key, function (err, decoded) {
         if (err) {
-            res.redirect('/public/signin');
+            if ((req.path === '/public/signin' || req.path === '/public/signup'|| (req.path==='/users'&&req.method==='POST')||(req.path==='/users/signin'))){
+                next();
+              }else{
+                console.log('Redirecting from: '+req.path);
+                res.redirect('/public/signin');
+              }
             }
         else{
-        	next();
+          next();
         }
-	});
-  	//Since next gets called, it goes to the necessary url
-	}else{ //Login or signup
-  		next();
-	}
+  });
 });
 
 module.exports = router;

@@ -16,7 +16,7 @@ GET /search?query=
 
 
 
-POST /signin - signin
+POST /users/signin - signin
 
 POST /users - sign up
 
