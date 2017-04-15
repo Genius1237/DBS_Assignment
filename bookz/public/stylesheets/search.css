@@ -24,7 +24,16 @@ ul {
 }
 
 .property-name {
-  font-weight: 800;
+  font-weight: 700;
+}
+
+.result-box-divider {
+  width: 90%;
+}
+
+.buyer-seller-heading {
+  font-family: 'Roboto';
+  padding-left: 40px;
 }
 
 #hr {

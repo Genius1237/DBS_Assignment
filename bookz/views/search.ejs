@@ -24,7 +24,23 @@
           <li class="result-box">
             
             <ul>
-              <% for (let property in result) { %>
+              <% for (let property in result.what) { %>
+                <li class="result-property"> 
+                  <span class="property-name"><%= property %></span> :  
+                  <span class="property-value"><%= result[property] %></span> 
+                </li>
+              <% } %>
+            </ul>
+
+            <hr class="result-box-divider">
+            <% if (sell === 'true') { %>
+              <p class="buyer-seller-heading">Seller's Details</p>
+            <%} else { %>
+              <p class="buyer-seller-heading">Buyer's Details</p>
+            <% } %>
+
+            <ul>
+              <% for (let property in result.who) { %>
                 <li class="result-property"> 
                   <span class="property-name"><%= property %></span> :  
                   <span class="property-value"><%= result[property] %></span> 
@@ -47,45 +63,70 @@
 
 var results = [
   {
-    'Title': 'abcd',
-    'Author': 'abcd',
-    'Publisher': 'abcd',
-    'Year of publishing': 'abcd',
-    'Edition': 'abcd',
-    'Condition': 'abcd',
-    'Cost': 'abcd'
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
   },
   {
-    'Title': 'abcd',
-    'Author': 'abcd',
-    'Publisher': 'abcd',
-    'Year of publishing': 'abcd',
-    'Edition': 'abcd',
-    'Condition': 'abcd',
-    'Cost': 'abcd'
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
   },
   {
-    'Title': 'abcd',
-    'Author': 'abcd',
-    'Publisher': 'abcd',
-    'Year of publishing': 'abcd',
-    'Edition': 'abcd',
-    'Condition': 'abcd',
-    'Cost': 'abcd'
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
   },
   {
-    'Title': 'abcd',
-    'Author': 'abcd',
-    'Publisher': 'abcd',
-    'Year of publishing': 'abcd',
-    'Edition': 'abcd',
-    'Condition': 'abcd',
-    'Cost': 'abcd'
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
   }
 ]
 
 app.get('/search', function(req, res) {
-  res.render(__dirname + '/search.ejs', {results: results, name: 'namehere'});
+  res.render(__dirname + '/search.ejs', {sell: 'true', results: results, name: 'namehere'});
 });
+
 
 -->
