@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/search.css">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <% include templates/header %>
+    <div id="hr"></div>
+    <br>
+    <br>
+    <% if (results.length === 0) { %>
+      <p id="no-results-alert">No results match your search</p>
+    <% } else { %>
+      <ul id="result-list">
+      
+      <% for (let result of results) { %>
+          <li class="result-box">
+            
+            <ul>
+              <% for (let property in result) { %>
+                <li class="result-property"> 
+                  <span class="property-name"><%= property %></span> :  
+                  <span class="property-value"><%= result[property] %></span> 
+                </li>
+              <% } %>
+            </ul>
+         
+          </li>
+      <% } %>
+
+      </ul>
+    <% } %>
+
+    <script src="http://localhost:3000/scripts/header.js"></script>
+  </body>
+
+</html>
+
+<!--
+
+var results = [
+  {
+    'Title': 'abcd',
+    'Author': 'abcd',
+    'Publisher': 'abcd',
+    'Year of publishing': 'abcd',
+    'Edition': 'abcd',
+    'Condition': 'abcd',
+    'Cost': 'abcd'
+  },
+  {
+    'Title': 'abcd',
+    'Author': 'abcd',
+    'Publisher': 'abcd',
+    'Year of publishing': 'abcd',
+    'Edition': 'abcd',
+    'Condition': 'abcd',
+    'Cost': 'abcd'
+  },
+  {
+    'Title': 'abcd',
+    'Author': 'abcd',
+    'Publisher': 'abcd',
+    'Year of publishing': 'abcd',
+    'Edition': 'abcd',
+    'Condition': 'abcd',
+    'Cost': 'abcd'
+  },
+  {
+    'Title': 'abcd',
+    'Author': 'abcd',
+    'Publisher': 'abcd',
+    'Year of publishing': 'abcd',
+    'Edition': 'abcd',
+    'Condition': 'abcd',
+    'Cost': 'abcd'
+  }
+]
+
+app.get('/search', function(req, res) {
+  res.render(__dirname + '/search.ejs', {results: results, name: 'namehere'});
+});
+
+-->

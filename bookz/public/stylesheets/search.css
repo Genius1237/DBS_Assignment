@@ -1,0 +1,40 @@
+body {
+  width: 1080px;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.result-box {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 17px;
+  margin-bottom: 17px;
+  box-shadow: 0px 0px 4px 0.5px black;
+}
+
+.result-property {
+  font-family: 'Roboto';
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.property-name {
+  font-weight: 800;
+}
+
+#hr {
+  margin-top: 80px;
+  height: 1px;
+  z-index: 0;
+  background-color: black;
+}
+
+#result-list {
+  width: 540px;
+  margin: auto;
+}
