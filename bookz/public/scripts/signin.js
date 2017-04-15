@@ -55,6 +55,7 @@ function initialise() {
 
   // Add listeners to input fields to respond to focus and blur
   var els = document.getElementsByTagName('input');
+  for (let el of els) {
     el.addEventListener('focus', onFocus);
     el.addEventListener('blur', onBlur);
   }
