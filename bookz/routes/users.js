@@ -3,6 +3,7 @@ var crypto=require('crypto');
 var db=require('../misc/database');
 var key=require('../misc/constants').key;
 var jwt=require('jsonwebtoken');
+var Regex=require('regex');
 var router = express.Router();
 
 //POST request, for login
@@ -61,36 +62,55 @@ router.post('/',function(req,res,next){
 	var name=req.body.name;
 	var phone=req.body.phone;
 	if (username != null && password != null && username!="" &&password!="") {
-		
-		var length=10;	
-		var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
-		var hash=crypto.createHmac('sha512',salt);
-		hash.update(password);
-		var hashed=hash.digest('hex');
+		var invalidfields=[];
+		if(password.length<8||password.length>20){
+			invalidfields.push('password');
+		}
+		if(/^\d{10}$/.test(phone)==false){
+			invalidfields.push('phone');
+		}
 
-		var toinsert=salt+'.'+hashed;
+		if(invalidfields.length!=0){
+			res.send({
+				usernameTaken: 'false',
+				valid: 'false',
+				invalidFields: invalidfields
+			});
+			console.log(invalidfields);
+			res.end();
+		}else{
 
-		//Insert into database
-		var post=[username,toinsert,name,phone];
-		var connection=db();
-		connection.query('INSERT INTO USER(username,password,name,phone) VALUES(?,?,?,?)',post,function(error){
-			if(error){
-				switch(error.code){
-					case 1062:{ //ER_DUP_ENTRY
+			var length=10;	
+			var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
+			var hash=crypto.createHmac('sha512',salt);
+			hash.update(password);
+			var hashed=hash.digest('hex');
 
-						break;
+			var toinsert=salt+'.'+hashed;
+
+			//Insert into database
+			var post=[username,toinsert,name,phone];
+			var connection=db();
+			connection.query('INSERT INTO USER(username,password,name,phone) VALUES(?,?,?,?)',post,function(error){
+				if(error){
+					switch(error.code){
+						case 1062:{ //ER_DUP_ENTRY
+							res.send({
+								usernameTaken: 'true',
+								valid: 'false'
+							});
+							break;
+						}
+
 					}
-
+					console.log(error);
+				}else{
+					res.json({
+						valid:"true"
+					});
 				}
-				console.log(error);
-			}else{
-				res.json({
-					valid:"true"
-				});
-				res.redirect('/public/home');
-			}
-		});
-
+			});
+		}
     }
 });
 
