@@ -71,7 +71,7 @@ function onClick(event) {
         // assuming response is in JSON
         let response = JSON.parse(xhr.response);
         if (response.valid === 'true') {
-          window.location.assign('https://localhost:3000');
+          window.location.assign('http://localhost:3000');
         } else {
           // highlight those fields that are invalid
           for (let name of response.invalidFields) {

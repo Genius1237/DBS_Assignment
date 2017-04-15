@@ -55,7 +55,7 @@ function onClick(event) {
   
   // make the AJAX request
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/signin');
+  xhr.open('POST', 'http://localhost:3000/users/signin');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
   xhr.send(payload);
   
@@ -65,7 +65,8 @@ function onClick(event) {
         // code assumes that 'Content-Type' of response is 'application/json'
         let response = JSON.parse(xhr.response);
         if (response.valid === 'true') {
-          window.location.reload(true);
+          //window.location.reload(true);
+          //new XMLHttpRequest().open('GET','/public/home').send(null);
         } else {
           requestStatusElement.textContent = 'Invalid Credentials';
         }
