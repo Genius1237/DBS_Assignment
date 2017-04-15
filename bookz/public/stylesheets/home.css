@@ -3,3 +3,10 @@ body {
   margin: auto;
   padding-top: 10px;
 }
+
+#hr {
+  margin-top: 70px;
+  height: 1px;
+  z-index: 0;
+  background-color: black;
+}

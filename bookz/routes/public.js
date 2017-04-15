@@ -11,23 +11,23 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-  res.render(path.join(__dirname,'/../views/home.ejs'), {user: 'namehere'});
+  res.render(path.join(__dirname,'/../views/home.ejs'), {name: 'namehere'});
 });
 
 router.get('/buy', function(req, res) {
-  res.render(path.join(__dirname,'/../views/buy.ejs'), {user: 'namehere'});
+  res.render(path.join(__dirname,'/../views/buy.ejs'), {name: 'namehere'});
 });
 
 router.get('/sell', function(req, res) {
-  res.render(path.join(__dirname,'/../views/sell.ejs'), {user: 'namehere'});
+  res.render(path.join(__dirname,'/../views/sell.ejs'), {name: 'namehere'});
 });
 
 router.get('/settings', function(req, res) {
-  res.render(path.join(__dirname,'/../views/settings.ejs'), {user: 'namehere'});
+  res.render(path.join(__dirname,'/../views/settings.ejs'), {name: 'namehere', username: 'namenamehere', phone: '00000000', password: 'something'});
 });
 
 router.get('/posts', function(req, res) {
-  res.render(path.join(__dirname,'/../views/posts.ejs'), {user: 'namehere'});
+  res.render(path.join(__dirname,'/../views/posts.ejs'), {name: 'namehere'});
 });
 
 module.exports = router;

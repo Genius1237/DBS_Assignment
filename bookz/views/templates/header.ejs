@@ -1,9 +1,20 @@
 <div id="header">
   
-  <p id="greeting">Hi <%= user %>, what do you need?</p>
+  <p id="greeting">Hi <%= name %>, what do you need?</p>
   
-  <input type="text" name="query" id="search-bar">
-  
+  <form id="search-form" method="get" action="search">
+    <input type="text" name="query" id="search-bar">
+    
+    <select name="option" id="search-option">
+      <option value="bs">Books for sale</option>
+      <option value="bb">Books for buy</option>
+      <option value="is">Items for sale</option>
+      <option value="ib">Items for buy</option>
+    </select>
+
+    <button id="search-button" type="submit">Search</button>
+  </form>
+
   <button id="drop-down-button">==</button>
   
   <div id="drop-down-content"> <!-- Positioned wrt #header because #header is positioned -->

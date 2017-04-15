@@ -21,6 +21,14 @@ function onMouseOut(event) {
 }
 
 function onClickTopButton(event) {
+  // empty values of all input fields
+  var els = document.getElementById((event.target.id).slice(0, 5) + 'form').getElementsByTagName('input');
+  for (let el of els) {
+    el.value = '';
+  }
+  document.getElementById('description').value = '';
+  document.getElementById('request-status').style.display = 'none';
+
   var bookButton = document.getElementById('book-button');
   var itemButton = document.getElementById('item-button');
   var bookForm = document.getElementById('book-form');
@@ -49,9 +57,13 @@ function onClickBuySellButton(event) {
 
   // prepare the payload
   var payload = '';
-  var els = document.getElementById(activeForm + '-form').document.getElementsByTagName('input');
+  var els = document.getElementById(activeForm + '-form').getElementsByTagName('input');
   for (let el of els) {
     payload += el.name + '=' + el.value + '&';
+  }
+  if (activeForm === 'item') {
+    var descriptionField = document.getElementById('description');
+    payload += descriptionField.name + '=' + descriptionField.value + '&';
   }
   if (document.getElementById('buy-sell-button').textContent === 'Buy') {
     payload += 'action=buy';
@@ -68,13 +80,13 @@ function onClickBuySellButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.visibility = 'visible';
         requestStatus.style.backgroundColor = '#00b300';
         requestStatus.textContent = 'Posted Successfully';
+        requestStatus.style.display = 'inline-block';
       } else {
-        requestStatus.style.visibility = 'visible';
         requestStatus.style.backgroundColor = '#ff001b';
         requestStatus.textContent = 'Required response not received';
+        requestStatus.style.display = 'inline-block';
       }
     }
   }
