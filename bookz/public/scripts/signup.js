@@ -14,6 +14,7 @@ var defaultAlertBoxValue = {
 
 function onFocus(event) {
   // make changes to the field value
+  event.target.type = 'password';
   if (event.target.value == defaultFieldValue[event.target.name]) {
     event.target.value = '';
   }
@@ -28,6 +29,7 @@ function onFocus(event) {
 function onBlur(event) {
   // make changes to the field value
   if (event.target.value === '') {
+    event.target.type = 'text';
     event.target.value = defaultFieldValue[event.target.name];
   }
 
@@ -71,7 +73,7 @@ function onClick(event) {
         // assuming response is in JSON
         let response = JSON.parse(xhr.response);
         if (response.valid === 'true') {
-          window.location.assign('https://localhost:3000');
+          window.location.assign('http://localhost:3000/public/home');
         } else {
           // highlight those fields that are invalid
           for (let name of response.invalidFields) {

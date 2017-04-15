@@ -11,6 +11,7 @@ function onFocus(event) {
     }
   } else {
     document.getElementById('password-alert').style.opacity = '1';
+    event.target.type = 'password';
     if (event.target.value === defaultValue.password) {
       event.target.value = '';
     }
@@ -26,6 +27,7 @@ function onBlur(event) {
   } else {
     document.getElementById('password-alert').style.opacity = '0';
     if (event.target.value === '') {
+      event.target.type = 'text';
       event.target.value = defaultValue.password;
     }
   }
@@ -65,7 +67,7 @@ function onClick(event) {
         // code assumes that 'Content-Type' of response is 'application/json'
         let response = JSON.parse(xhr.response);
         if (response.valid === 'true') {
-          window.location.reload(true);
+          window.location.assign('http://localhost:3000/public/home');
         } else {
           requestStatusElement.textContent = 'Invalid Credentials';
         }

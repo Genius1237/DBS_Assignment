@@ -23,7 +23,7 @@ router.get('/sell', function(req, res) {
 });
 
 router.get('/settings', function(req, res) {
-  res.render(path.join(__dirname,'/../views/settings.ejs'), {name: 'namehere', username: 'namenamehere', phone: '00000000', password: 'xxxxxxxxxx'});
+  res.render(path.join(__dirname,'/../views/settings.ejs'), {name: 'namehere', username: 'namenamehere', phone: '00000000', password: 'something'});
 });
 
 router.get('/posts', function(req, res) {
