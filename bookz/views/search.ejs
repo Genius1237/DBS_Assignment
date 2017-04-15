@@ -27,7 +27,7 @@
               <% for (let property in result.what) { %>
                 <li class="result-property"> 
                   <span class="property-name"><%= property %></span> :  
-                  <span class="property-value"><%= result[property] %></span> 
+                  <span class="property-value"><%= result.what[property] %></span> 
                 </li>
               <% } %>
             </ul>
@@ -43,7 +43,7 @@
               <% for (let property in result.who) { %>
                 <li class="result-property"> 
                   <span class="property-name"><%= property %></span> :  
-                  <span class="property-value"><%= result[property] %></span> 
+                  <span class="property-value"><%= result.who[property] %></span> 
                 </li>
               <% } %>
             </ul>
