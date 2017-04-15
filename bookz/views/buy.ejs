@@ -19,7 +19,7 @@
 
     <form id="book-form">
 
-      <p id="form-title">Fill in the details of the book that you want to buy</p>
+      <h2>Fill in the details of the book that you want to buy</h2>
       <table>
         <tr>
           <td><label>Title</label></td>
@@ -50,7 +50,7 @@
     </form>
 
     <form id="item-form">
-      <p id="form-title">Fill in the details of the item that you want to buy</p>
+      <h2>Fill in the details of the item that you want to buy</h2>
       <table>
 
         <tr>
@@ -60,13 +60,14 @@
 
         <tr>
           <td><label>Description</label></td>
-          <td><input type="text" name="description"></td>
+          <td><textarea name="description" id="description"></textarea></td>
         </tr>
         
       </table>
     </form>
 
     <button type="button" id="buy-sell-button">Buy</button>
+    <p id="request-status"></p>
 
     <script src="http://localhost:3000/scripts/buy_sell.js"></script>
     <script src="http://localhost:3000/scripts/header.js"></script>

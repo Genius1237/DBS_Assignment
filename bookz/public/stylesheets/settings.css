@@ -3,21 +3,6 @@ body {
   margin: auto;
 }
 
-button {
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
-  padding: 8px;
-  border-radius: 2px;
-  color: white;
-  transition: box-shadow 0.2s ease-in 0s;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-form {
-  padding-left: 400px;
-}
-
 input {
   width: 170px;
   color: gray;
@@ -30,13 +15,22 @@ tr {
   height: 80px;
 }
 
+td {
+  text-align: right;
+  padding-left: 4px;
+}
+
+label {
+  font-family: 'Roboto';
+}
+
 p {
   font-family: 'Roboto';
 }
 
 h2 {
   font-family: 'Roboto';
-  padding-left: 440px; 
+  text-align: center;
 }
 
 .onhover-info {
@@ -50,6 +44,7 @@ h2 {
   padding: 8px 8px 8px 8px;
   margin-left: 4px;
   border-radius: 4px;
+  text-align: left;
 }
 
 #request-status {
@@ -61,4 +56,27 @@ h2 {
   display: inline-block;
   border-radius: 4px;
   margin-left: 8px;
+}
+
+#hr {
+  margin-top: 80px;
+  height: 1px;
+  z-index: 0;
+  background-color: black;
+}
+
+#update-button {
+  border: 1px solid #005ce6;
+  background-color: #005ce6;
+  padding: 8px;
+  border-radius: 2px;
+  color: white;
+  transition: box-shadow 0.2s ease-in 0s;
+  margin-left: 480px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#account-details-form {
+  margin-left: 380px;
 }

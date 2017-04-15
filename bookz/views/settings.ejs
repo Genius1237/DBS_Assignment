@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/settings.css">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <% include templates/header %>
+  
+    <div id="hr"></div>
+    <h2>Update your details below</h2>
+    <form id="account-details-form">
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td><input type="text" name="name" value=<%- name %>></td>
+          <td><p class="onhover-info" id="name-alert"></p></td>
+        </tr>
+        <tr>
+          <td><label>Username</label></td>
+          <td><input type="text" name="username" value=<%- username %> readonly="readonly"></td>
+          <td><p class="onhover-info" id="username-alert"></p></td>
+        </tr>
+        <tr>
+          <td><label>Password</label></td>
+          <td><input type="password" name="password" value=<%- password %>></td>
+          <td><p class="onhover-info" id="password-alert"></p></td>
+        </tr>
+        <tr>
+          <td><label>Phone</label></td>
+          <td><input type="text" name="phone" value=<%- phone %>></td>
+          <td><p class="onhover-info" id="phone-alert"></p></td>
+        </tr>
+      </table>
+    </form>
+
+    <button type="button" id="update-button">Update</button>
+    <p id="request-status">Submitting..</p>
+
+    <script src="http://localhost:3000/scripts/settings.js"></script>
+    <script src="http://localhost:3000/scripts/header.js"></script>
+  
+  </body>
+
+</html>

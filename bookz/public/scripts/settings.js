@@ -1,38 +1,23 @@
-var defaultFieldValue = {
-  name: 'Name',
-  username: 'Username',
-  password: 'Password',
-  phone: 'Phone'
-}
-
 var defaultAlertBoxValue = {
   name: 'Name chars',
-  username: 'Username chars',
+  username: 'Not editable',
   password: 'Password chars',
   phone: 'Phone chars'
 }
 
 function onFocus(event) {
-  // make changes to the field value
-  event.target.type = 'password';
-  if (event.target.value == defaultFieldValue[event.target.name]) {
-    event.target.value = '';
-  }
-
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert');
   alertElement.textContent = defaultAlertBoxValue[event.target.name];
-  alertElement.style.backgroundColor = '#00b300';
+  if (event.target.name === 'username')
+    alertElement.style.backgroundColor = '#444744';
+  else {
+    alertElement.style.backgroundColor = '#00b300';
+  }
   alertElement.style.opacity = '1';
 }
 
 function onBlur(event) {
-  // make changes to the field value
-  if (event.target.value === '') {
-    event.target.type = 'text';
-    event.target.value = defaultFieldValue[event.target.name];
-  }
-
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert').style.opacity = '0';
 }
@@ -56,12 +41,13 @@ function onClick(event) {
 
   // modify request status element
   var requestStatusElement = document.getElementById('request-status')
+  requestStatusElement.style.backgroundColor = '#ff001b';
   requestStatusElement.style.textContent = 'Submitting..';
   requestStatusElement.style.visibility = 'visible';
 
   // make AJAX request
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/users');
+  xhr.open('PUT', 'http://localhost:3000/users');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send(payload);
 
@@ -69,11 +55,12 @@ function onClick(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        document.getElementById('request-status').style.visibility = 'hidden';
         // assuming response is in JSON
         let response = JSON.parse(xhr.response);
         if (response.valid === 'true') {
-          window.location.assign('http://localhost:3000/public/home');
+          requestStatusElement.style.visibility = 'visible';
+          requestStatusElement.style.backgroundColor = '#00b300';
+          requestStatusElement.style.textContent = 'Updated successfully';
         } else {
           // highlight those fields that are invalid
           for (let name of response.invalidFields) {
@@ -95,27 +82,17 @@ function initialise() {
   // add listeners to input fields to respond to focus and blur
   var els = document.getElementsByTagName('input');
   for (let el of els) {
-    if (el.name === 'name') {
-      el.value = defaultFieldValue.name;
-    } else if (el.name === 'username') {
-      el.value = defaultFieldValue.username;
-    } else if (el.name === 'password') {
-      el.value = defaultFieldValue.password;
-    } else {
-      el.value = defaultFieldValue.phone;
-    }
-
-    el.addEventListener('focus', onFocus);
-    el.addEventListener('blur', onBlur);
+      el.addEventListener('focus', onFocus);
+      el.addEventListener('blur', onBlur);
   }
 
   // add listeners to submit button to respond to hover
-  var submitButton = document.getElementsByTagName('button')[0];
+  var submitButton = document.getElementById('update-button');
   submitButton.addEventListener('mouseover', onMouseOver);
   submitButton.addEventListener('mouseout', onMouseOut);
 
   // add listeners to form to respond to submit
-  document.getElementById('create-account-button').addEventListener('click', onClick);
+  document.getElementById('update-button').addEventListener('click', onClick);
 }
 
 document.addEventListener('DOMContentLoaded', initialise);
