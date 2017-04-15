@@ -1,10 +1,3 @@
-var defaultFieldValue = {
-  name: 'Name',
-  username: 'Username',
-  password: 'Password',
-  phone: 'Phone'
-}
-
 var defaultAlertBoxValue = {
   name: 'Name chars',
   username: 'Username chars',
@@ -13,12 +6,6 @@ var defaultAlertBoxValue = {
 }
 
 function onFocus(event) {
-  // make changes to the field value
-  event.target.type = 'password';
-  if (event.target.value == defaultFieldValue[event.target.name]) {
-    event.target.value = '';
-  }
-
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert');
   alertElement.textContent = defaultAlertBoxValue[event.target.name];
@@ -27,14 +14,8 @@ function onFocus(event) {
 }
 
 function onBlur(event) {
-  // make changes to the field value
-  if (event.target.value === '') {
-    event.target.type = 'text';
-    event.target.value = defaultFieldValue[event.target.name];
-  }
-
   // make changes to alert box
-  var alertElement = document.getElementById(event.target.name + '-alert').style.opacity = '0';
+  document.getElementById(event.target.name + '-alert').style.opacity = '0';
 }
 
 function onMouseOver(event) {
@@ -76,11 +57,18 @@ function onClick(event) {
           window.location.assign('http://localhost:3000/public/home');
         } else {
           // highlight those fields that are invalid
-          for (let name of response.invalidFields) {
-            let el = document.getElementById(name + '-alert');
-            el.style.backgroundColor = '#ff001b';
-            el.textContent = 'Invalid value entered';
-            el.style.opacity = '1';
+          if (response.usernameTaken === 'true') {
+              let el = document.getElementById('username-alert');
+              el.style.backgroundColor = '#ff001b';
+              el.textContent = 'Username already taken';
+              el.style.opacity = '1';
+          } else {
+            for (let name of response.invalidFields) {
+              let el = document.getElementById(name + '-alert');
+              el.style.backgroundColor = '#ff001b';
+              el.textContent = 'Invalid value entered';
+              el.style.opacity = '1';
+            }
           }
         }
       } else {
@@ -95,16 +83,6 @@ function initialise() {
   // add listeners to input fields to respond to focus and blur
   var els = document.getElementsByTagName('input');
   for (let el of els) {
-    if (el.name === 'name') {
-      el.value = defaultFieldValue.name;
-    } else if (el.name === 'username') {
-      el.value = defaultFieldValue.username;
-    } else if (el.name === 'password') {
-      el.value = defaultFieldValue.password;
-    } else {
-      el.value = defaultFieldValue.phone;
-    }
-
     el.addEventListener('focus', onFocus);
     el.addEventListener('blur', onBlur);
   }

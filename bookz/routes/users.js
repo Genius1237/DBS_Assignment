@@ -79,7 +79,6 @@ router.post('/',function(req,res,next){
 			console.log(invalidfields);
 			res.end();
 		}else{
-
 			var length=10;	
 			var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
 			var hash=crypto.createHmac('sha512',salt);
@@ -101,7 +100,6 @@ router.post('/',function(req,res,next){
 							});
 							break;
 						}
-
 					}
 					console.log(error);
 				}else{

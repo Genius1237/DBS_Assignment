@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/search.css">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <% include templates/header %>
+    <div id="hr"></div>
+    <br>
+    <br>
+    <% if (results.length === 0) { %>
+      <p id="no-results-alert">No results match your search</p>
+    <% } else { %>
+      <ul id="result-list">
+      
+      <% for (let result of results) { %>
+          <li class="result-box">
+            
+            <ul>
+              <% for (let property in result.what) { %>
+                <li class="result-property"> 
+                  <span class="property-name"><%= property %></span> :  
+                  <span class="property-value"><%= result.what[property] %></span> 
+                </li>
+              <% } %>
+            </ul>
+
+            <hr class="result-box-divider">
+            <% if (sell === 'true') { %>
+              <p class="buyer-seller-heading">Seller's Details</p>
+            <%} else { %>
+              <p class="buyer-seller-heading">Buyer's Details</p>
+            <% } %>
+
+            <ul>
+              <% for (let property in result.who) { %>
+                <li class="result-property"> 
+                  <span class="property-name"><%= property %></span> :  
+                  <span class="property-value"><%= result.who[property] %></span> 
+                </li>
+              <% } %>
+            </ul>
+         
+          </li>
+      <% } %>
+
+      </ul>
+    <% } %>
+
+    <script src="http://localhost:3000/scripts/header.js"></script>
+  </body>
+
+</html>
+
+<!--
+
+var results = [
+  {
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
+  },
+  {
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
+  },
+  {
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
+  },
+  {
+    what: {
+      'Title': 'abcd',
+      'Author': 'nope',
+      'Publisher': 'nope',
+      'Year of publishing': 'nope',
+      'Edition': 'nope',
+      'Condition': 'nope',
+      'Cost': 'nope'
+    },
+    who: {
+      'Name': 'abcd',
+      'Phone': '0000'
+    }
+  }
+]
+
+app.get('/search', function(req, res) {
+  res.render(__dirname + '/search.ejs', {sell: 'true', results: results, name: 'namehere'});
+});
+
+
+-->

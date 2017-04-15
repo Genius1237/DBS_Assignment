@@ -5,7 +5,6 @@ body {
 
 input {
   width: 170px;
-  color: gray;
   border: 1px solid black;
   padding: 8px;
   border-radius: 2px;
@@ -79,4 +78,8 @@ h2 {
 
 #account-details-form {
   margin-left: 380px;
+}
+
+input[name="username"] {
+  color:gray;
 }

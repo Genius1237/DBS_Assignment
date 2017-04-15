@@ -1,36 +1,9 @@
-var defaultValue = {
-  username: 'Enter username here',
-  password: 'Enter password here'
-};
-
 function onFocus(event) {
-  if (event.target.name === 'username') {
-    document.getElementById('username-alert').style.opacity = '1';
-    if (event.target.value === defaultValue.username) {
-      event.target.value = '';
-    }
-  } else {
-    document.getElementById('password-alert').style.opacity = '1';
-    event.target.type = 'password';
-    if (event.target.value === defaultValue.password) {
-      event.target.value = '';
-    }
-  }
+  document.getElementById(event.target.name + '-alert').style.opacity = '1';
 }
 
 function onBlur(event) {
-  if (event.target.name === 'username') {
-    document.getElementById('username-alert').style.opacity = '0';
-    if (event.target.value === '') {
-      event.target.value = defaultValue.username;
-    }
-  } else {
-    document.getElementById('password-alert').style.opacity = '0';
-    if (event.target.value === '') {
-      event.target.type = 'text';
-      event.target.value = defaultValue.password;
-    }
-  }
+  document.getElementById(event.target.name + '-alert').style.opacity = '0';
 }
 
 function onMouseOver(event) {
@@ -83,11 +56,6 @@ function initialise() {
   // Add listeners to input fields to respond to focus and blur
   var els = document.getElementsByTagName('input');
   for (let el of els) {
-    if (el.name === 'username') {
-      el.value = defaultValue.username;
-    } else {
-      el.value = defaultValue.password;
-    }
     el.addEventListener('focus', onFocus);
     el.addEventListener('blur', onBlur);
   }
