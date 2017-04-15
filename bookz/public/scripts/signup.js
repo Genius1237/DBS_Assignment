@@ -76,11 +76,18 @@ function onClick(event) {
           window.location.assign('http://localhost:3000/public/home');
         } else {
           // highlight those fields that are invalid
-          for (let name of response.invalidFields) {
-            let el = document.getElementById(name + '-alert');
-            el.style.backgroundColor = '#ff001b';
-            el.textContent = 'Invalid value entered';
-            el.style.opacity = '1';
+          if (response.usernameTaken === 'true') {
+              let el = document.getElementById('username-alert');
+              el.style.backgroundColor = '#ff001b';
+              el.textContent = 'Username already taken';
+              el.style.opacity = '1';
+          } else {
+            for (let name of response.invalidFields) {
+              let el = document.getElementById(name + '-alert');
+              el.style.backgroundColor = '#ff001b';
+              el.textContent = 'Invalid value entered';
+              el.style.opacity = '1';
+            }
           }
         }
       } else {

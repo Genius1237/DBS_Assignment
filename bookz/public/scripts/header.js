@@ -42,15 +42,6 @@ function onMouseoutSearchButton(event) {
   event.target.style.backgroundColor = 'white';
 }
 
-function onClickSignoutOption(event) {
-  event.preventDefault();
-
-  // delete cookie
-
-  // get to signin page
-  window.location.assign('http://localhost:3000/public/signin');
-}
-
 function initialise() {
   var searchBar = document.getElementById('search-bar');
   var dropDownButton = document.getElementById('drop-down-button');
@@ -69,9 +60,6 @@ function initialise() {
   // listenere to handle mouseover search button
   searchButton.addEventListener('mouseover', onMouseoverSearchButton);
   searchButton.addEventListener('mouseout', onMouseoutSearchButton);
-
-  // listener to prevent default action, delete cookie and get to signin page
-  signoutOption.addEventListener('click', onClickSignoutOption);
 
   // listeners for hover over links in dropdown
   var els = document.getElementById('drop-down-content').getElementsByTagName('a');

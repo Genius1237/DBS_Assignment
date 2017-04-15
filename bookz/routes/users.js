@@ -77,10 +77,25 @@ router.post('/',function(req,res,next){
 			if(error){
 				switch(error.code){
 					case 1062:{ //ER_DUP_ENTRY
-
+						res.send({
+							usernameTaken: 'true',
+							valid: 'false'
+						});
 						break;
 					}
-
+					/*
+					// if any field is not of proper length
+					{
+						valid: 'false',
+						usernameTaken: 'false'
+						invalidFields: [name, username, password, phone]
+					}
+					// else
+					{
+						valid: 'true'
+						usernameTaken: 'false'
+					}
+					*/
 				}
 				console.log(error);
 			}else{
