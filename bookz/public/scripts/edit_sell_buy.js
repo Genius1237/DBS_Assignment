@@ -97,7 +97,6 @@ function onClickPostDeleteButton(event) {
   buyOrSell = buyOrSell[buyOrSell.length - 1];
   var payload = ('category=' + buyOrSell + '&');
   payload += ('id=' + event.currentTarget.parentNode.parentNode.className.split(' ')[1]);
-  alert(payload);
 
   // make the AJAX request
   var requestStatus = event.currentTarget.parentNode.getElementsByClassName('request-status')[0];

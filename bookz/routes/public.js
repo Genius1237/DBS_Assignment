@@ -95,7 +95,7 @@ var results1 = [
 ]
 
 router.get('/search', function(req, res) {
-  res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: 'sell', results: results1, name: 'namehere'});
+  res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: 'Sell', results: results1, name: 'namehere'});
 });
 
 var results_buy_sell = {
