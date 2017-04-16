@@ -47,7 +47,7 @@ function onClickTopButton(event) {
 }
 
 function onClickBuySellButton(event) {
-  // find the active form, item of book
+  // find the active form, item or book
   var activeForm;
   if (document.getElementById('item-form').style.display === 'none') {
     activeForm = 'book';

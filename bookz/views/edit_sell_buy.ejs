@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Buy and sell here</title>
+    <meta name="description" content="Online selling portal">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/edit_sell_buy.css">
+    <link rel="stylesheet" href="http://localhost:3000/stylesheets/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <% include templates/header %>
+    <div id="hr"></div>
+
+    <button type="button" id="book-button">Book</button>
+    <p id="delimiter">|</p>
+    <button type="button" id="item-button">Item</button>
+
+    <ul id="book-list" class="result-list">
+      <% for (let book of results.books) { %>
+        <li class="result-box <%- book.id %>">
+          <button type="button" class="exit-focus-button">X</button>
+          <br>
+          <form>
+            <table>
+              <% for (let property in book.what) { %>
+                <tr>
+                  <td><label class="property-name"><%- property %> : </label></td>
+                  <% if (property === 'Description') { %>
+                      <td><textarea name=<%- property %> disabled=""><%- book.what[property] %></textarea></td>
+                  <% } else { %>
+                      <td><input type="text" name="<%- property %>" readonly="" value=<%- book.what[property] %>></td>
+                  <% } %>
+                </tr>
+              <% } %>
+            </table>
+            <br>
+            <button type="button" class="post-update-button">Update</button>
+            <button type="button" class="post-delete-button">Delete</button>
+            <p class="request-status"></p>
+          </form>
+        </li>
+      <% } %>
+    </ul>
+
+    <ul id="item-list" class="result-list">
+      <% for (let item of results.items) { %>
+        <li class="result-box <%- item.id %>">
+          <button type="button" class="exit-focus-button">X</button>
+          <br>
+          <form>
+            <table>
+              <% for (let property in item.what) { %>
+                <tr>
+                  <td><label class="property-name"><%- property %> : </label></td>
+                  <% if (property === 'Description') { %>
+                      <td><textarea name=<%- property %> disabled=""><%- item.what[property] %></textarea></td>
+                  <% } else { %>
+                      <td><input type="text" name="<%- property %>" readonly="" value=<%- item.what[property] %>></td>
+                  <% } %>
+                </tr>
+              <% } %>
+            </table>
+            <br>
+            <button type="button" class="post-update-button">Update</button>
+            <button type="button" class="post-delete-button">Delete</button>
+            <p class="request-status"></p>
+          </form>
+        </li>
+      <% } %>
+    </ul>
+
+
+    <script src="http://localhost:3000/scripts/header.js"></script>
+    <script src="http://localhost:3000/scripts/edit_sell_buy.js"></script>
+  </body>
+
+</html>
