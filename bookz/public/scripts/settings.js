@@ -33,9 +33,11 @@ function onMouseOut(event) {
 function onClick(event) {
   // prepare payload for AJAX request
   var payload = "";
-  var els = document.getElementsByTagName('input');
+  var els = document.getElementById('account-details-form').getElementsByTagName('input');
   for (let el of els) {
-    payload += el.name + "=" + el.value + "&";
+    if (el.name != 'username') {
+      payload += el.name + "=" + el.value + "&";
+    }
   }
   payload = payload.slice(0, payload.length - 1);
 
@@ -80,7 +82,7 @@ function onClick(event) {
 function initialise() {
 
   // add listeners to input fields to respond to focus and blur
-  var els = document.getElementsByTagName('input');
+  var els = document.getElementById('account-details-form').getElementsByTagName('input');
   for (let el of els) {
       el.addEventListener('focus', onFocus);
       el.addEventListener('blur', onBlur);

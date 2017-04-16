@@ -2,7 +2,7 @@
   
   <p id="greeting">Hi <%= name %>, what do you need?</p>
   
-  <form id="search-form" method="get" action="search">
+  <form id="search-form" method="get" action="/public/search">
     <input type="text" name="query" id="search-bar" placeholder="Search here">
     
     <select name="option" id="search-option">
@@ -22,7 +22,8 @@
       <li><a href="http://localhost:3000/public/home">Home</a></li>
       <li><a href="http://localhost:3000/public/sell">Sell</a></li>
       <li><a href="http://localhost:3000/public/buy">Buy</a></li>
-      <li><a href="http://localhost:3000/public/posts">Edit Posts</a></li>
+      <li><a href="http://localhost:3000/public/posts/sell">Edit sell posts</a></li>
+      <li><a href="http://localhost:3000/public/posts/buy">Edit buy posts</a></li>
       <li><a href="http://localhost:3000/public/settings">Account Settings</a></li>
       <li><a href="http://localhost:3000/users/signout">Sign Out</a></li>
     </ul>

@@ -16,8 +16,9 @@
     <br>
     <br>
     <% if (results.length === 0) { %>
-      <p id="no-results-alert">No results match your search</p>
+      <p id="result-heading">No results match your search</p>
     <% } else { %>
+      <p id="result-heading">Here are the results of your search</p>
       <ul id="result-list">
       
       <% for (let result of results) { %>
@@ -33,12 +34,7 @@
             </ul>
 
             <hr class="result-box-divider">
-            <% if (sell === 'true') { %>
-              <p class="buyer-seller-heading">Seller's Details</p>
-            <%} else { %>
-              <p class="buyer-seller-heading">Buyer's Details</p>
-            <% } %>
-
+            <p class="buyer-seller-heading"><%= sellOrBuy %>er's Details</p>
             <ul>
               <% for (let property in result.who) { %>
                 <li class="result-property"> 

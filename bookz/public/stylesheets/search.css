@@ -47,3 +47,9 @@ ul {
   width: 540px;
   margin: auto;
 }
+
+#result-heading {
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 17px;
+}

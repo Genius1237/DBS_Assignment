@@ -10,7 +10,9 @@ GET /public/sell
 
 GET /public/settings - account settings page
 
-GET /public/posts - Page to edit posts
+GET /public/posts/buy - Page to edit buy posts
+
+GET /public/posts/sell - Page to edit sell posts
 
 GET /search?query=
 
@@ -26,9 +28,9 @@ POST /books - put up book for sale or buy
 
 POST /items - put up item for sale or buy
 
-POST /books - edit book
+PUT /books - edit book
 
-POST /items - edit item
+PUT /items - edit item
 
 DELETE /books - delete book
 
