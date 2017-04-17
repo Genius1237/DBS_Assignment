@@ -16,8 +16,9 @@ router.post('/signin', function(req, res, next) {
 
 		var connection=db();
 		var q=[username];
-		connection.query('SELECT password from USER WHERE username=?',q,function(error,results){
-			if(results.length==0){
+		connection.query('SELECT * from USER WHERE username=?',q,function(error,results){
+			//console.log(results);
+			if(results==null||results.length==0){
 				res.send({
 						valid:"false"
 					});
@@ -33,7 +34,15 @@ router.post('/signin', function(req, res, next) {
 				var hashed=hash.digest('hex');
 
 				if(hashed===p){
-					var token=jwt.sign(username,key);
+					var id=results[0]._id;
+					var name=results[0].name;
+					var ph=results[0].phone;
+					var token=jwt.sign({
+										'username': username,
+										'id':id,
+										'name':name,
+										'phone':ph
+										},key);
 					//console.log(token);
 					res.cookie('name',token);
 					res.send({
@@ -61,52 +70,59 @@ router.post('/',function(req,res,next){
 	var name=req.body.name;
 	var phone=req.body.phone;
 	if (username != null && password != null && username!="" &&password!="") {
-		
-		var length=10;	
-		var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
-		var hash=crypto.createHmac('sha512',salt);
-		hash.update(password);
-		var hashed=hash.digest('hex');
+		var invalidfields=[];
+		if(password.length<8||password.length>20){
+			invalidfields.push('password');
+		}
+		if(/^\d{10}$/.test(phone)==false){
+			invalidfields.push('phone');
+		}
 
-		var toinsert=salt+'.'+hashed;
+		if(invalidfields.length!=0){
+			res.send({
+				usernameTaken: 'false',
+				valid: 'false',
+				invalidFields: invalidfields
+			});
+			console.log(invalidfields);
+			res.end();
+		}else{
+			var length=10;	
+			var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
+			var hash=crypto.createHmac('sha512',salt);
+			hash.update(password);
+			var hashed=hash.digest('hex');
 
-		//Insert into database
-		var post=[username,toinsert,name,phone];
-		var connection=db();
-		connection.query('INSERT INTO USER(username,password,name,phone) VALUES(?,?,?,?)',post,function(error){
-			if(error){
-				switch(error.code){
-					case 1062:{ //ER_DUP_ENTRY
-						res.send({
-							usernameTaken: 'true',
-							valid: 'false'
-						});
-						break;
+			var toinsert=salt+'.'+hashed;
+
+			//Insert into database
+			var post=[username,toinsert,name,phone];
+			var connection=db();
+			connection.query('INSERT INTO USER(username,password,name,phone) VALUES(?,?,?,?)',post,function(error){
+				if(error){
+					//console.log(error.code);
+					switch(error.code){
+						case 'ER_DUP_ENTRY':{ //ER_DUP_ENTRY
+							res.send({
+								usernameTaken: 'true',
+								valid: 'false'
+							});
+							break;
+						}
 					}
-					/*
-					// if any field is not of proper length
-					{
-						valid: 'false',
-						usernameTaken: 'false'
-						invalidFields: [name, username, password, phone]
-					}
-					// else
-					{
-						valid: 'true'
-						usernameTaken: 'false'
-					}
-					*/
+					//console.log(error);
+				}else{
+					res.json({
+						valid:"true"
+					});
 				}
-				console.log(error);
-			}else{
-				res.json({
-					valid:"true"
-				});
-				res.redirect('/public/home');
-			}
-		});
-
+			});
+		}
     }
+});
+
+router.put('/',function(req,res){
+
 });
 
 module.exports = router;

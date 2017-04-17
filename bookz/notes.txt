@@ -14,7 +14,7 @@ GET /public/posts/buy - Page to edit buy posts
 
 GET /public/posts/sell - Page to edit sell posts
 
-GET /search?query=
+GET /public/search?query=""&option={bb,bs,ib,is}
 
 
 

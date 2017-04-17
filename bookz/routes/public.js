@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var path=require('path');
+var jwt=require('jsonwebtoken');
+var db=require('../misc/database');
 
 router.get('/signin', function(req, res) {
   res.sendFile(path.join(__dirname,'../views/signin.html'));
@@ -11,91 +13,135 @@ router.get('/signup', function(req, res) {
 });
 
 router.get('/home', function(req, res) {
-  res.render(path.join(__dirname,'/../views/home.ejs'), {name: 'namehere'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+
+  res.render(path.join(__dirname,'/../views/home.ejs'), {name: nname});
 });
 
 router.get('/buy', function(req, res) {
-  res.render(path.join(__dirname,'/../views/buy.ejs'), {name: 'namehere'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+  res.render(path.join(__dirname,'/../views/buy.ejs'), {name: nname});
 });
 
 router.get('/sell', function(req, res) {
-  res.render(path.join(__dirname,'/../views/sell.ejs'), {name: 'namehere'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+  res.render(path.join(__dirname,'/../views/sell.ejs'), {name: nname});
 });
 
 router.get('/settings', function(req, res) {
-  res.render(path.join(__dirname,'/../views/settings.ejs'), {name: 'namehere', username: 'namenamehere', phone: '00000000', password: 'something'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+	var uname=decoded.username;
+	var ph=decoded.phone;
+  res.render(path.join(__dirname,'/../views/settings.ejs'), {name: nname, username: uname, phone: ph, password: '********'});
 });
 
 router.get('/posts', function(req, res) {
-  res.render(path.join(__dirname,'/../views/posts.ejs'), {name: 'namehere'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+  res.render(path.join(__dirname,'/../views/posts.ejs'), {name: nname});
 });
 
-//////////////// Temporary //////////////////////
-var results1 = [
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  }
-]
-
 router.get('/search', function(req, res) {
-  res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: 'Sell', results: results1, name: 'namehere'});
+	if(req.query.query!=null&&req.query.option!=null){
+
+		var querystring=req.query.query;
+		var option=req.query.option;
+		var table,stable;
+		//console.log(querystring,option);
+		switch(option){
+			case 'bs': 	table = 'BOOK_SELL';
+						stable='BOOK';
+						break;
+			case 'bb': 	table = 'BOOK_BUY';
+						stable='BOOK';
+						break;
+			case 'is': 	table = 'ITEM_SELL';
+						stable='ITEM';
+						break;
+			case 'ib': 	table = 'ITEM_BUY';
+						stable='ITEM';
+						break;
+		}
+		var query,type;
+		if(option[0]=='b'){
+			query = 'SELECT BOOK.title,BOOK.author,BOOK.publisher,BOOK.edition,BOOK.year,'+table+'.price,USER.name,USER.phone FROM '+table+',BOOK,USER WHERE BOOK._id='+table+'.link_id AND '+table+".user=USER._id AND (BOOK.title LIKE ? OR BOOK.author LIKE ? )";
+		}else if(option[0]='i'){
+			query = 'SELECT ITEM.name,ITEM.description,'+table+'.price,USER.name as nameu,USER.phone FROM '+table+',ITEM,USER WHERE ITEM._id='+table+'.link_id AND '+table+".user=USER._id AND (ITEM.name LIKE ? OR ITEM.description LIKE ? )";
+		}
+		if(option[1]=='b'){
+			type='Buy';
+		}else if(option[1]=='s'){
+			type='Sell';
+		}
+		
+		//console.log(query,querystring);
+
+		var parameters=['%'+querystring+'%','%'+querystring+'%'];
+		var connection=db();
+		connection.query(query,parameters,function(error,results){
+			if(error){
+				console.log(error);
+				res.sendStatus(404);
+			}else{
+				//console.log(results[0].title);
+				var results1=[];
+				for(var i=0;i<results.length;i++){
+					var r=results[i];
+					if(option[0]=='b'){
+						results1.push(
+							{
+							    what: {
+							      'Title': r.title,
+							      'Author': r.author,
+							      'Publisher': r.publisher,
+							      'Year of publishing': r.year,
+							      'Edition': r.edition,
+							      'Condition': '',
+							      'Cost': r.price
+							    },
+							    who: {
+							      'Name': r.name,
+							      'Phone': r.phone
+							    }
+							  }
+							);
+					}else if(option[0]=='i'){
+						results1.push(
+							{
+							    what: {
+							    	'Name':r.name,
+        							'Description': r.description,
+        							'Cost': r.price
+								},
+							    who: {
+							      'Name': r.nameu,
+							      'Phone': r.phone
+							    }
+							  }
+							);
+					}
+				}
+
+
+
+				var token = req.cookies.name;
+				var decoded=jwt.decode(token);
+				var name=decoded.name;
+				res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: type, results: results1, name: name});
+			}
+		});
+	}else{
+		res.sendStatus(404);
+	}
 });
 
 var results_buy_sell = {
