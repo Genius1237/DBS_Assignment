@@ -67,7 +67,7 @@ function onClickPostUpdateButton(event) {
   var xhr = new XMLHttpRequest();
   xhr.open('PUT', '/' + activeList + 's');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
+  xhr.send(payload);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
@@ -103,7 +103,7 @@ function onClickPostDeleteButton(event) {
   var xhr = new XMLHttpRequest();
   xhr.open('DELETE', '/' + activeList + 's');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
+  xhr.send(payload);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
