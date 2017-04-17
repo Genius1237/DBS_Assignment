@@ -16,8 +16,9 @@ router.post('/signin', function(req, res, next) {
 
 		var connection=db();
 		var q=[username];
-		connection.query('SELECT password from USER WHERE username=?',q,function(error,results){
-			if(results.length==0){
+		connection.query('SELECT * from USER WHERE username=?',q,function(error,results){
+			//console.log(results);
+			if(results==null||results.length==0){
 				res.send({
 						valid:"false"
 					});
@@ -33,7 +34,15 @@ router.post('/signin', function(req, res, next) {
 				var hashed=hash.digest('hex');
 
 				if(hashed===p){
-					var token=jwt.sign(username,key);
+					var id=results[0]._id;
+					var name=results[0].name;
+					var ph=results[0].phone;
+					var token=jwt.sign({
+										'username': username,
+										'id':id,
+										'name':name,
+										'phone':ph
+										},key);
 					//console.log(token);
 					res.cookie('name',token);
 					res.send({
