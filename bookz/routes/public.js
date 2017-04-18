@@ -72,14 +72,14 @@ router.get('/search', function(req, res) {
 						break;
 		}
 		var query,type;
-		if(option[0]=='b'){
+		if(option[0]==='b'){
 			query = 'SELECT BOOK.title,BOOK.author,BOOK.publisher,BOOK.edition,BOOK.year,'+table+'.price,USER.name,USER.phone FROM '+table+',BOOK,USER WHERE BOOK._id='+table+'.link_id AND '+table+".user=USER._id AND (BOOK.title LIKE ? OR BOOK.author LIKE ? )";
-		}else if(option[0]='i'){
+		}else if(option[0]==='i'){
 			query = 'SELECT ITEM.name,ITEM.description,'+table+'.price,USER.name as nameu,USER.phone FROM '+table+',ITEM,USER WHERE ITEM._id='+table+'.link_id AND '+table+".user=USER._id AND (ITEM.name LIKE ? OR ITEM.description LIKE ? )";
 		}
-		if(option[1]=='b'){
+		if(option[1]==='b'){
 			type='Buy';
-		}else if(option[1]=='s'){
+		}else if(option[1]==='s'){
 			type='Sell';
 		}
 		
