@@ -85,7 +85,7 @@ function onClickBuySellButton(event) {
         requestStatus.style.display = 'inline-block';
       } else {
         requestStatus.style.backgroundColor = '#ff001b';
-        requestStatus.textContent = 'Some fields were blank';
+        requestStatus.textContent = 'Some fields were blank or did not follow the format';
         requestStatus.style.display = 'inline-block';
       }
     }
