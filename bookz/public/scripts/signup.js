@@ -28,7 +28,7 @@ function onMouseOut(event) {
 
 function onClick(event) {
   let passwordAlert = document.getElementById('password-alert');
-  if (len(document.getElementById('password-field').value) < 8) {
+  if (document.getElementById('password-field').value.length < 8) {
     passwordAlert.style.backgroundColor = '#ff001b';
     passwordAlert.textContent = 'Entered password is less than 8 characters long';
     passwordAlert.style.opacity = '1';
