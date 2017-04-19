@@ -56,10 +56,12 @@ router.get('/search', function(req, res) {
 		var querystring=req.query.query;
 		var option=req.query.option;
 		var table,stable;
+		var optional="";
 		//console.log(querystring,option);
 		switch(option){
 			case 'bs': 	table = 'BOOK_SELL';
 						stable='BOOK';
+						optional="BOOK_SELL.conditiono,";
 						break;
 			case 'bb': 	table = 'BOOK_BUY';
 						stable='BOOK';
@@ -73,7 +75,7 @@ router.get('/search', function(req, res) {
 		}
 		var query,type;
 		if(option[0]=='b'){
-			query = 'SELECT BOOK.title,BOOK.author,BOOK.publisher,BOOK.edition,BOOK.year,'+table+'.price,USER.name,USER.phone FROM '+table+',BOOK,USER WHERE BOOK._id='+table+'.link_id AND '+table+".user=USER._id AND (BOOK.title LIKE ? OR BOOK.author LIKE ? )";
+			query = 'SELECT BOOK.title,BOOK.author,BOOK.publisher,BOOK.edition,BOOK.year,'+table+'.price,'+optional+'USER.name,USER.phone FROM '+table+',BOOK,USER WHERE BOOK._id='+table+'.link_id AND '+table+".user=USER._id AND (BOOK.title LIKE ? OR BOOK.author LIKE ? )";
 		}else if(option[0]='i'){
 			query = 'SELECT ITEM.name,ITEM.description,'+table+'.price,USER.name as nameu,USER.phone FROM '+table+',ITEM,USER WHERE ITEM._id='+table+'.link_id AND '+table+".user=USER._id AND (ITEM.name LIKE ? OR ITEM.description LIKE ? )";
 		}
@@ -97,37 +99,72 @@ router.get('/search', function(req, res) {
 				for(var i=0;i<results.length;i++){
 					var r=results[i];
 					if(option[0]=='b'){
-						results1.push(
-							{
-							    what: {
-							      'Title': r.title,
-							      'Author': r.author,
-							      'Publisher': r.publisher,
-							      'Year of publishing': r.year,
-							      'Edition': r.edition,
-							      'Condition': '',
-							      'Cost': r.price
-							    },
-							    who: {
-							      'Name': r.name,
-							      'Phone': r.phone
-							    }
-							  }
-							);
+						if(option[1]=='s'){
+							results1.push(
+								{
+								    what: {
+								      'Title': r.title,
+								      'Author': r.author,
+								      'Publisher': r.publisher,
+								      'Year of publishing': r.year,
+								      'Edition': r.edition,
+								      'Condition': r.conditiono,
+								      'Cost': r.price
+								    },
+								    who: {
+								      'Name': r.name,
+								      'Phone': r.phone
+								    }
+								  }
+								);
+						}else{
+							results1.push(
+								{
+								    what: {
+								      'Title': r.title,
+								      'Author': r.author,
+								      'Publisher': r.publisher,
+								      'Year of publishing': r.year,
+								      'Edition': r.edition,
+								      'Willing to Pay': r.price
+								    },
+								    who: {
+								      'Name': r.name,
+								      'Phone': r.phone
+								    }
+								  }
+								);
+						}
 					}else if(option[0]=='i'){
-						results1.push(
-							{
-							    what: {
-							    	'Name':r.name,
-        							'Description': r.description,
-        							'Cost': r.price
-								},
-							    who: {
-							      'Name': r.nameu,
-							      'Phone': r.phone
-							    }
-							  }
-							);
+						if(option[1]=='s'){
+							results1.push(
+								{
+								    what: {
+								    	'Name':r.name,
+	        							'Description': r.description,
+	        							'Cost': r.price
+									},
+								    who: {
+								      'Name': r.nameu,
+								      'Phone': r.phone
+								    }
+								  }
+								);
+						}else{
+							results1.push(
+								{
+								    what: {
+								    	'Name':r.name,
+	        							'Description': r.description,
+	        							'Willing to Pay': r.price
+									},
+								    who: {
+								      'Name': r.nameu,
+								      'Phone': r.phone
+								    }
+								  }
+								);
+						}
 					}
 				}
 
