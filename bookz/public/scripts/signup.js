@@ -27,52 +27,60 @@ function onMouseOut(event) {
 }
 
 function onClick(event) {
-  // prepare payload for AJAX request
-  var payload = "";
-  var els = document.getElementsByTagName('input');
-  for (let el of els) {
-    payload += el.name + "=" + el.value + "&";
-  }
-  payload = payload.slice(0, payload.length - 1);
+  let passwordAlert = document.getElementById('password-alert');
+  if (len(document.getElementById('password-field').value) < 8) {
+    passwordAlert.style.backgroundColor = '#ff001b';
+    passwordAlert.textContent = 'Entered password is less than 8 characters long';
+    passwordAlert.style.opacity = '1';
+  } else {
+    passwordAlert.style.opacity = '0';
+    // prepare payload for AJAX request
+    let payload = "";
+    let els = document.getElementsByTagName('input');
+    for (let el of els) {
+      payload += el.name + "=" + el.value + "&";
+    }
+    payload = payload.slice(0, payload.length - 1);
 
-  // modify request status element
-  var requestStatusElement = document.getElementById('request-status')
-  requestStatusElement.style.textContent = 'Submitting..';
-  requestStatusElement.style.visibility = 'visible';
+    // modify request status element
+    let requestStatusElement = document.getElementById('request-status')
+    requestStatusElement.style.textContent = 'Submitting..';
+    requestStatusElement.style.visibility = 'visible';
 
-  // make AJAX request
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/users');
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send(payload);
+    // make AJAX request
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:3000/users');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(payload);
 
-  // handle response to AJAX request
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === xhr.DONE) {
-      if (xhr.status === 200) {
-        document.getElementById('request-status').style.visibility = 'hidden';
-        // assuming response is in JSON
-        let response = JSON.parse(xhr.response);
-        if (response.valid === 'true') {
-          window.location.assign('http://localhost:3000/public/home');
-        } else {
-          // highlight those fields that are invalid
-          if (response.usernameTaken === 'true') {
-              let el = document.getElementById('username-alert');
-              el.style.backgroundColor = '#ff001b';
-              el.textContent = 'Username already taken';
-              el.style.opacity = '1';
+    // handle response to AJAX request
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === xhr.DONE) {
+        if (xhr.status === 200) {
+          document.getElementById('request-status').style.visibility = 'hidden';
+          // assuming response is in JSON
+          let response = JSON.parse(xhr.response);
+          if (response.valid === 'true') {
+            window.location.assign('http://localhost:3000/public/home');
           } else {
-            for (let name of response.invalidFields) {
-              let el = document.getElementById(name + '-alert');
-              el.style.backgroundColor = '#ff001b';
-              el.textContent = 'Invalid value entered';
-              el.style.opacity = '1';
+            // highlight those fields that are invalid
+            if (response.usernameTaken === 'true') {
+                let el = document.getElementById('username-alert');
+                el.style.backgroundColor = '#ff001b';
+                el.textContent = 'Username already taken';
+                el.style.opacity = '1';
+            } else {
+              for (let name of response.invalidFields) {
+                let el = document.getElementById(name + '-alert');
+                el.style.backgroundColor = '#ff001b';
+                el.textContent = 'Invalid value entered';
+                el.style.opacity = '1';
+              }
             }
           }
+        } else {
+          requestStatusElement.style.textContent = 'Required response not received';
         }
-      } else {
-        requestStatusElement.style.textContent = 'Required response not received';
       }
     }
   }
