@@ -1,8 +1,8 @@
 var defaultAlertBoxValue = {
-  name: 'Name chars',
-  username: 'Username chars',
-  password: 'Password chars',
-  phone: 'Phone chars'
+  name: 'Maximum 50 characters',
+  username: 'Maximum 50 characters',
+  password: 'Minimum 8 characters, maximum 20 characters',
+  phone: 'Exactly 10 digits'
 }
 
 function onFocus(event) {
