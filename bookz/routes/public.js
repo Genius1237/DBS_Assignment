@@ -144,62 +144,117 @@ router.get('/search', function(req, res) {
 	}
 });
 
-var results_buy_sell = {
-  books: [
-    {
-      what: {
-        'Title': 'abcd',
-        'Author': 'nope',
-        'Publisher': 'nope',
-        'Year of publishing': 'nope',
-        'Edition': 'nope',
-        'Condition': 'nope',
-        'Cost': 'nope'
-      },
-      id: 1
-    },
-    {
-      what: {
-        'Title': 'abcd',
-        'Author': 'nope',
-        'Publisher': 'nope',
-        'Year of publishing': 'nope',
-        'Edition': 'nope',
-        'Condition': 'nope',
-        'Cost': 'nope'
-      },
-      id: 2
-    }
-  ],
-
-
-  items: [
-    {
-      what: {
-        'Description': 'nope',
-        'Cost': 'nope'
-      },
-      id: 1
-    },
-    {
-      what: {
-        'Description': 'nope',
-        'Cost': 'nope'
-      },
-      id: 2
-    }
-  ]
-
-};
-
 router.get('/posts/sell', function(req, res) {
-  res.render(path.join(__dirname,'/../views/edit_sell_buy.ejs'), {results: results_buy_sell, name: 'namehere'});
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
+
+	var userid=decoded.id;
+	var query1='SELECT * FROM BOOK_SELL,BOOK WHERE BOOK_SELL.link_id=BOOK._id AND BOOK_SELL.user=?';
+	var query2='SELECT * FROM ITEM_SELL,ITEM WHERE ITEM_SELL.link_id=ITEM._id AND ITEM_SELL.user=?';
+
+	var results_buy_sell={"books":[],"items":[]};
+	var connection=db();
+	connection.query(query1,[userid],function(error,results){
+		if(error){
+			console.log(error);
+			res.sendStatus(404);
+		}else{
+			for(var i=0;i<results.length;i++){
+				var r=results[i];
+				results_buy_sell.books.push({
+							    what: {
+							      'Title': r.title,
+							      'Author': r.author,
+							      'Publisher': r.publisher,
+							      'Year of publishing': r.year,
+							      'Edition': r.edition,
+							      'Condition': '',
+							      'Cost': r.price
+							    },
+							    id: r._id
+							  });
+			}
+			connection.query(query2,[userid],function(error,results){
+				if(error){
+					console.log(error);
+					res.sendStatus(404);
+				}else{
+					for(var i=0;i<results.length;i++){
+					var r=results[i];
+					results_buy_sell.items.push({
+								    what: {
+								    	'Name':r.name,
+	        							'Description': r.description,
+	        							'Cost': r.price
+									},
+								    id: r._id
+								  });
+					}
+
+				}
+				//console.log(results_buy_sell);
+				res.render(path.join(__dirname,'/../views/edit_sell_buy.ejs'), {results: results_buy_sell, name: nname});
+			});
+		}
+	});
+
 });
 
 router.get('/posts/buy', function(req, res) {
-  res.render(path.join(__dirname,'/../views/edit_sell_buy.ejs'), {results: results_buy_sell, name: 'namehere'});
-});
+  	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var nname=decoded.name;
 
-//////////////// Temporary //////////////////////
+	var userid=decoded.id;
+	var query1='SELECT * FROM BOOK_BUY,BOOK WHERE BOOK_BUY.link_id=BOOK._id AND BOOK_BUY.user=?';
+	var query2='SELECT * FROM ITEM_BUY,ITEM WHERE ITEM_BUY.link_id=ITEM._id AND ITEM_BUY.user=?';
+
+	var results_buy_sell={"books":[],"items":[]};
+	var connection=db();
+	connection.query(query1,[userid],function(error,results){
+		if(error){
+			console.log(error);
+			res.sendStatus(404);
+		}else{
+			for(var i=0;i<results.length;i++){
+				var r=results[i];
+				results_buy_sell.books.push({
+							    what: {
+							      'Title': r.title,
+							      'Author': r.author,
+							      'Publisher': r.publisher,
+							      'Year of publishing': r.year,
+							      'Edition': r.edition,
+							      'Condition': '',
+							      'Cost': r.price
+							    },
+							    id: r._id
+							  });
+			}
+			connection.query(query2,[userid],function(error,results){
+				if(error){
+					console.log(error);
+					res.sendStatus(404);
+				}else{
+					for(var i=0;i<results.length;i++){
+					var r=results[i];
+					results_buy_sell.items.push({
+								    what: {
+								    	'Name':r.name,
+	        							'Description': r.description,
+	        							'Cost': r.price
+									},
+								    id: r._id
+								  });
+					}
+
+				}
+				//console.log(results_buy_sell);
+				res.render(path.join(__dirname,'/../views/edit_sell_buy.ejs'), {results: results_buy_sell, name: nname});
+			});
+		}
+	});
+});
 
 module.exports = router;
