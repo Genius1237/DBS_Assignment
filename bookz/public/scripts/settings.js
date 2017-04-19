@@ -36,7 +36,6 @@ function onClick(event) {
     passwordAlert.style.backgroundColor = '#ff001b';
     passwordAlert.textContent = 'Entered password is less than 8 characters long';
     passwordAlert.style.opacity = '1';
-
   } else {
     // prepare payload for AJAX request
     passwordAlert.style.opacity = '0';
