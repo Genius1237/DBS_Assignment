@@ -11,7 +11,7 @@ CREATE TABLE BOOK(
 	title varchar(50),
 	author varchar(50),
 	publisher varchar(50),
-	edition integer,
+	edition varchar(50),
 	year integer
 );
 
