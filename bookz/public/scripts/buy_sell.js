@@ -76,7 +76,7 @@ function onClickBuySellButton(event) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/' + activeForm + 's');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
+  xhr.send(payload);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
