@@ -1,7 +1,18 @@
+html {
+  background-image: url("http://localhost:3000/stylesheets/bg.png");
+  background-repeat: repeat repeat;
+  z-index: 0;
+}
+
 body {
-  max-width: 1080px;
+  max-width: 1072px;
   margin: auto;
   padding-top: 10px;
+  background-color: white;
+  z-index: 1;
+  padding-left: 4px;
+  padding-right: 4px;
+  box-shadow: 0px 0px 4px 0.1px black;
 }
 
 form input {
@@ -36,7 +47,6 @@ h2 {
 
 form textarea {
   width: 250px;
-  color: gray;
   border: 1px solid black;
   padding: 8px;
   border-radius: 2px;
@@ -46,7 +56,7 @@ form textarea {
 
 #hr {
   margin-top: 70px;
-  height: 1px;
+  height: 0px;
   z-index: 0;
   background-color: black;
 }
@@ -65,8 +75,8 @@ form textarea {
   margin-left: 470px;
   width: 100px;
   display: inline-block;
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 8px 28px 8px 28px;
   border-radius: 2px;
   color: white;

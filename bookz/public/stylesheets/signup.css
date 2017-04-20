@@ -4,8 +4,8 @@ body {
 }
 
 button {
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 8px;
   border-radius: 2px;
   color: white;
@@ -41,7 +41,7 @@ h2 {
 .onhover-info {
   opacity: 0;
   transition: opacity 0.2s ease-in 0s;
-  background-color:  #00b300;
+  background-color:  #005ce6;
   color: white;
   width: 300px;
   font-family: 'Roboto';

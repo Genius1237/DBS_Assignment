@@ -12,7 +12,7 @@ function onFocus(event) {
   if (event.target.name === 'username')
     alertElement.style.backgroundColor = '#444744';
   else {
-    alertElement.style.backgroundColor = '#00b300';
+    alertElement.style.backgroundColor = '#005ce6';
   }
   alertElement.style.opacity = '1';
 }
@@ -68,7 +68,7 @@ function onClick(event) {
           let response = JSON.parse(xhr.response);
           if (response.valid === 'true') {
             requestStatusElement.style.visibility = 'visible';
-            requestStatusElement.style.backgroundColor = '#00b300';
+            requestStatusElement.style.backgroundColor = '#005ce6';
             requestStatusElement.style.textContent = 'Updated successfully';
           } else {
             // highlight those fields that are invalid

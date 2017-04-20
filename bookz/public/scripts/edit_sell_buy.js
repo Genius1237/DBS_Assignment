@@ -6,7 +6,7 @@ function onMouseOver(event) {
   if (event.target.className === 'post-delete-button' || event.target.className === 'post-update-button') {
     event.target.style.boxShadow = "0px 0px 2px 1px black";
   } else {
-    event.target.style.backgroundColor = '#444744';
+    event.target.style.backgroundColor = '#dd7019';
     event.target.style.color = 'white';
   }
 }
@@ -26,13 +26,13 @@ function onClickTopButton(event) {
   var bookList = document.getElementById('book-list');
   var itemList = document.getElementById('item-list');
   if (event.target.id === 'book-button') {
-    bookButton.style.borderBottom = '2px solid black';
+    bookButton.style.borderBottom = '2px solid #dd7019';
     itemButton.style.borderBottom = '';
     bookList.style.display = 'block';
     itemList.style.display = 'none';
   } else {
     bookButton.style.borderBottom = '';
-    itemButton.style.borderBottom = '2px solid black';
+    itemButton.style.borderBottom = '2px solid #dd7019';
     bookList.style.display = 'none';
     itemList.style.display = 'block';
   }
@@ -71,7 +71,7 @@ function onClickPostUpdateButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.backgroundColor = '#00b300';
+        requestStatus.style.backgroundColor = '#005ce6';
         requestStatus.textContent = 'Updated Successfully';
         requestStatus.style.display = 'inline-block';
       } else {
@@ -107,7 +107,7 @@ function onClickPostDeleteButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.backgroundColor = '#00b300';
+        requestStatus.style.backgroundColor = '#005ce6';
         requestStatus.textContent = 'Deleted Successfully';
         requestStatus.style.display = 'inline-block';
         window.location.reload(true);

@@ -4,9 +4,9 @@
 
 function onMouseOver(event) {
   if (event.target.id === 'buy-sell-button') {
-    event.target.style.boxShadow = "0px 0px 2px 1px black";
+    event.target.style.boxShadow = "0px 0px -2px -1px black";
   } else {
-    event.target.style.backgroundColor = '#444744';
+    event.target.style.backgroundColor = '#dd7019';
     event.target.style.color = 'white';
   }
 }
@@ -21,6 +21,13 @@ function onMouseOut(event) {
 }
 
 function onClickTopButton(event) {
+  var page;
+  if (document.getElementById('buy-sell-button').textContent === 'Buy') {
+    page = 'buy';
+  } else {
+    page = 'sell';
+  }
+
   // empty values of all input fields
   var els = document.getElementById((event.target.id).slice(0, 5) + 'form').getElementsByTagName('input');
   for (let el of els) {
@@ -34,15 +41,25 @@ function onClickTopButton(event) {
   var bookForm = document.getElementById('book-form');
   var itemForm = document.getElementById('item-form');
   if (event.target.id === 'book-button') {
-    bookButton.style.borderBottom = '2px solid black';
+    bookButton.style.borderBottom = '2px solid #dd7019';
     itemButton.style.borderBottom = '';
     bookForm.style.display = 'block';
     itemForm.style.display = 'none';
+    if (page == 'sell') {
+      document.getElementById('set-height').style.paddingBottom = '0px';
+    } else {
+      document.getElementById('set-height').style.paddingBottom = '40px';
+    }
   } else {
     bookButton.style.borderBottom = '';
-    itemButton.style.borderBottom = '2px solid black';
+    itemButton.style.borderBottom = '2px solid #dd7019';
     bookForm.style.display = 'none';
     itemForm.style.display = 'block';
+    if (page == 'sell') {
+      document.getElementById('set-height').style.paddingBottom = '282px';
+    } else {
+      document.getElementById('set-height').style.paddingBottom = '282px';
+    }
   }
 }
 
@@ -80,7 +97,7 @@ function onClickBuySellButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.backgroundColor = '#00b300';
+        requestStatus.style.backgroundColor = '#005ce6';
         requestStatus.textContent = 'Posted Successfully';
         requestStatus.style.display = 'inline-block';
       } else {
