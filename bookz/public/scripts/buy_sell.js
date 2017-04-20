@@ -4,7 +4,7 @@
 
 function onMouseOver(event) {
   if (event.target.id === 'buy-sell-button') {
-    event.target.style.boxShadow = "0px 0px -2px -1px black";
+    event.target.style.boxShadow = "0px 0px 2px 1px black";
   } else {
     event.target.style.backgroundColor = '#dd7019';
     event.target.style.color = 'white';
