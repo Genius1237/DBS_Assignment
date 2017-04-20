@@ -206,7 +206,7 @@ router.get('/posts/sell', function(req, res) {
 							      'Publisher': r.publisher,
 							      'Year of publishing': r.year,
 							      'Edition': r.edition,
-							      'Condition': '',
+							      'Condition': r.conditiono,
 							      'Cost': r.price
 							    },
 							    id: r._id
@@ -263,7 +263,6 @@ router.get('/posts/buy', function(req, res) {
 							      'Publisher': r.publisher,
 							      'Year of publishing': r.year,
 							      'Edition': r.edition,
-							      'Condition': '',
 							      'Cost': r.price
 							    },
 							    id: r._id

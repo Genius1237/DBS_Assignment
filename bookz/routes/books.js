@@ -3,10 +3,6 @@ var jwt=require('jsonwebtoken');
 var db=require('../misc/database');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-	
-});
-
 router.post('/', function(req, res, next) {
 	var title=req.body.title;
 	var author=req.body.author;
@@ -52,8 +48,9 @@ router.post('/', function(req, res, next) {
 				res.sendStatus(404);
 			}
 		}else if(action=="buy"){
-			if(title!=null&&title!=""&&author!=null&&author!=""&&publisher!=null&&publisher!=""&&edition!=null&&edition!=""&&year!=null&&year!=""){
+			if(title!=null&&title!=""&&author!=null&&author!=""&&publisher!=null&&publisher!=""&&edition!=null&&edition!=""&&year!=null&&year!=""&&cost!=null&&cost!=""){
 				var year=parseInt(year);
+				var cost=parseInt(cost);
 
 				var query="INSERT INTO BOOK(title,author,publisher,edition,year) VALUES(?,?,?,?,?)";
 				var connection=db();
@@ -81,14 +78,115 @@ router.post('/', function(req, res, next) {
 				});
 
 			}else{
-				console.log('Here2');
 				res.sendStatus(404);
 			}
 
 		}else{
-			console.log('Here3');
 			res.sendStatus(404);
 		}
+	}
+
+});
+
+router.put('/', function(req, res, next) {
+	var title=req.body["Title"];
+	var author=req.body["Author"];
+	var publisher=req.body["Publisher"];
+	var edition=req.body["Edition"];
+	var year=req.body["Year of publishing"];
+	var condition=req.body["Condition"];
+	var cost=req.body["Cost"];
+	var action=req.body["category"];
+	var bookid=req.body.id;
+
+	if(action!=null&&action!=""){
+		if(action=="sell"){
+			if(title!=null&&title!=""&&author!=null&&author!=""&&publisher!=null&&publisher!=""&&edition!=null&&edition!=""&&year!=null&&year!=""&&condition!=null&&condition!=""&&cost!=null&&cost!=""){
+				var cost=parseInt(cost);
+				var year=parseInt(year);
+
+				var query="UPDATE BOOK SET title=?,author=?,publisher=?,edition=?,year=? WHERE _id=?";
+				var connection=db();
+				var params=[title,author,publisher,edition,year,bookid];
+				connection.query(query,params,function(err,results){
+					if(err){
+						console.log(err);
+						res.sendStatus(404);
+					}else{
+						//console.log(results.insertId);
+						var query2="UPDATE BOOK_SELL SET price=?,conditiono=? WHERE link_id=?";
+						var params2=[cost,condition,bookid];
+						connection.query(query2,params2,function(err,results){
+							if(err){
+								console.log(err);
+								res.sendStatus(404);
+							}else{
+								res.sendStatus(200);
+							}
+						});
+					}
+				});
+
+			}else{
+				res.sendStatus(404);
+			}
+		}else if(action=="buy"){
+			if(title!=null&&title!=""&&author!=null&&author!=""&&publisher!=null&&publisher!=""&&edition!=null&&edition!=""&&year!=null&&year!=""){
+				var year=parseInt(year);
+				var cost=parseInt(cost);
+				var query="UPDATE BOOK SET title=?,author=?,publisher=?,edition=?,year=? WHERE _id=?";
+				var connection=db();
+				var params=[title,author,publisher,edition,year,bookid];
+				connection.query(query,params,function(err,results){
+					if(err){
+						console.log(err);
+						res.sendStatus(404);
+					}else{
+						//console.log(results.insertId);
+						var query2="UPDATE BOOK_BUY SET price=? WHERE link_id=?";
+						var params2=[cost,bookid];
+						connection.query(query2,params2,function(err,results){
+							if(err){
+								console.log(err);
+								res.sendStatus(404);
+							}else{
+								res.sendStatus(200);
+							}
+						});
+					}
+				});
+
+			}else{
+				res.sendStatus(404);
+			}
+
+		}else{
+			res.sendStatus(404);
+		}
+	}
+	
+});
+
+router.delete('/', function(req, res, next) {
+	var bookid=req.body.id;
+
+	if(bookid!=null&&bookid!=""&&category!=null&&category!=""){
+
+		var id=parseInt(bookid);
+		var table="";
+
+		var query="DELETE FROM BOOK WHERE _id=?";
+		var params=[id];
+		console.log(query,id);
+		var connection=db();
+		connection.query(query,params,function(error,result){
+			if(error){
+				console.log(error);
+				res.sendStatus(404);
+			}else{
+				res.sendStatus(200);
+			}
+		});
 	}
 
 });
