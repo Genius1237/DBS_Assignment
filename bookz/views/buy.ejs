@@ -43,7 +43,12 @@
 
         <tr>
           <td><label>Year of publishing</label></td>
-          <td><input type="number" name="year" maxlength="50"></td>
+          <td><input type="number" name="year" max="9999"></td>
+        </tr>
+
+        <tr>
+          <td><label>Willing to pay</label></td>
+          <td><input type="number" name="cost" min="0"></td>
         </tr>
 
       </table>
@@ -61,6 +66,11 @@
         <tr>
           <td><label>Description</label></td>
           <td><textarea name="description" id="description" maxlength="500"></textarea></td>
+        </tr>
+
+        <tr>
+          <td><label>Willing to pay</label></td>
+          <td><input type="number" name="cost" min="0"></td>
         </tr>
         
       </table>

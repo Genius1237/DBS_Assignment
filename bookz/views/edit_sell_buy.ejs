@@ -31,7 +31,7 @@
                   <% if (property === 'Description') { %>
                       <td><textarea name="<%= property %>" disabled="" maxlength="500"><%= book.what[property] %></textarea></td>
                   <% } else if (property === 'Cost') { %>
-                      <td><input type="number" name="<%= property %>" readonly="" value="<%= book.what[property] %>" maxlength="50"></td>
+                      <td><input type="number" name="<%= property %>" readonly="" value="<%= book.what[property] %>" min="0"></td>
                   <% } else { %>
                       <td><input type="text" name="<%= property %>" readonly="" value="<%= book.what[property] %>" maxlength="50"></td>
                   <% } %>
@@ -60,7 +60,7 @@
                   <% if (property === 'Description') { %>
                       <td><textarea name="<%= property %>" disabled="" maxlength="500"><%= item.what[property] %></textarea></td>
                   <% } else if (property === 'Cost') { %>
-                      <td><input type="number" name="<%= property %>" readonly="" value="<%= item.what[property] %>" maxlength="50"></td>
+                      <td><input type="number" name="<%= property %>" readonly="" value="<%= item.what[property] %>" min="0"></td>
                   <% } else { %>
                       <td><input type="text" name="<%= property %>" readonly="" value="<%= item.what[property] %>" maxlength="50"></td>
                   <% } %>

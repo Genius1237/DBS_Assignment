@@ -76,7 +76,7 @@ function onClickPostUpdateButton(event) {
         requestStatus.style.display = 'inline-block';
       } else {
         requestStatus.style.backgroundColor = '#ff001b';
-        requestStatus.textContent = 'Required response not received';
+        requestStatus.textContent = 'Some fields were blank or invalid';
         requestStatus.style.display = 'inline-block';
       }
     }

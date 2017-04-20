@@ -85,7 +85,7 @@ function onClickBuySellButton(event) {
         requestStatus.style.display = 'inline-block';
       } else {
         requestStatus.style.backgroundColor = '#ff001b';
-        requestStatus.textContent = 'Unsuccessful communication with server';
+        requestStatus.textContent = 'Some fields were blank or invalid';
         requestStatus.style.display = 'inline-block';
       }
     }
