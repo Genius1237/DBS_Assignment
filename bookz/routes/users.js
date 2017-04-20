@@ -128,7 +128,7 @@ router.put('/',function(req,res,next){
 	var phone=req.body.phone;
 	if (username != null && password != null && username!="" &&password!=""&&name != null && phone != null && name!="" &&phone!="") {
 		var invalidfields=[];
-		if(password.length<8||password.length>20){
+		if(password.length<8||password.length>20 || password==='********'){
 			invalidfields.push('password');
 		}
 		if(/^\d{10}$/.test(phone)==false){
@@ -150,20 +150,30 @@ router.put('/',function(req,res,next){
 			var hashed=hash.digest('hex');
 
 			var toinsert=salt+'.'+hashed;
-
-			//Insert into database
 			var post=[name,phone,toinsert,username];
-			
 			var connection=db();
-			connection.query('UPDATE USER SET name=?,phone=?,password=? WHERE username=?',post,function(error){
+			connection.query('UPDATE USER SET name=?,phone=?,password=? WHERE username=?',post,function(error,results){
 				if(error){
 					//console.log(error.code);
-						
-					//console.log(error);
+					console.log(error);
 				}else{
-					res.json({
-						valid:"true"
-					});
+					if(results.length!=0) {
+						res.clearCookie('name');
+						var token = jwt.sign({
+												'username' : results[0].username,
+												'id' : results[0]._id,
+												'name' : results[0].name,
+												'phone' : results[0].phone
+											},key);
+						res.cookie('name',token);
+						res.json({
+							valid:"true"
+						});
+					}else{
+						res.json({
+							valid:"false"
+						});
+					}
 				}
 			});
 		}
