@@ -45,7 +45,7 @@ function onClick(event) {
           requestStatusElement.textContent = 'Invalid Credentials';
         }
       } else {
-        requestStatusElement.textContent = 'Required response not received';
+        requestStatusElement.textContent = 'Unsuccessful communication with server';
       }
     }
   }

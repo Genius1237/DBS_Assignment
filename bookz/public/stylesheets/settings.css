@@ -80,6 +80,13 @@ h2 {
   margin-left: 380px;
 }
 
-input[name="username"] {
+input[name=username] {
   color:gray;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
 }

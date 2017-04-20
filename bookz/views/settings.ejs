@@ -19,22 +19,22 @@
       <table>
         <tr>
           <td><label>Name</label></td>
-          <td><input type="text" name="name" value=<%- name %>></td>
+          <td><input type="text" name="name" value="<%= name %>" maxlength="50"></td>
           <td><p class="onhover-info" id="name-alert"></p></td>
         </tr>
         <tr>
           <td><label>Username</label></td>
-          <td><input type="text" name="username" value=<%- username %> readonly="readonly"></td>
+          <td><input type="text" name="username" value="<%= username %>" readonly="readonly" maxlength="50"></td>
           <td><p class="onhover-info" id="username-alert"></p></td>
         </tr>
         <tr>
           <td><label>Password</label></td>
-          <td><input type="password" name="password" value=<%- password %>></td>
+          <td><input type="password" name="password" value="<%= password %>" id="password-field" maxlength="20"></td>
           <td><p class="onhover-info" id="password-alert"></p></td>
         </tr>
         <tr>
           <td><label>Phone</label></td>
-          <td><input type="text" name="phone" value=<%- phone %>></td>
+          <td><input type="number" name="phone" value="<%= phone %>" min="1000000000" max="9999999999"></td>
           <td><p class="onhover-info" id="phone-alert"></p></td>
         </tr>
       </table>

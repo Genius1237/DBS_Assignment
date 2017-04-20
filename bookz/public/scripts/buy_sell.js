@@ -76,7 +76,7 @@ function onClickBuySellButton(event) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/' + activeForm + 's');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send();
+  xhr.send(payload);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
@@ -85,7 +85,7 @@ function onClickBuySellButton(event) {
         requestStatus.style.display = 'inline-block';
       } else {
         requestStatus.style.backgroundColor = '#ff001b';
-        requestStatus.textContent = 'Required response not received';
+        requestStatus.textContent = 'Unsuccessful communication with server';
         requestStatus.style.display = 'inline-block';
       }
     }
