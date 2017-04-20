@@ -9,7 +9,7 @@ function onFocus(event) {
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert');
   alertElement.textContent = defaultAlertBoxValue[event.target.name];
-  alertElement.style.backgroundColor = '#00b300';
+  alertElement.style.backgroundColor = '#005ce6';
   alertElement.style.opacity = '1';
 }
 

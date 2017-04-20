@@ -1,6 +1,6 @@
 #hr {
   margin-top: 70px;
-  height: 1px;
+  height: 0px;
   z-index: 0;
   background-color: black;
 }
@@ -80,11 +80,22 @@
   margin: auto;
 }
 
-body {
-  width: 1080px;
-  margin: auto;
+html {
+  background-image: url("http://localhost:3000/stylesheets/bg.png");
+  background-repeat: repeat repeat;
+  z-index: -1;
 }
 
+body {
+  max-width: 1072px;
+  margin: auto;
+  padding-top: 10px;
+  background-color: white;
+  z-index: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  box-shadow: 0px 0px 4px 0.1px black;
+}
 #delimiter {
   display: inline-block;
 }
@@ -95,8 +106,8 @@ button {
 
 .post-update-button {
   display: none;
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 4px 17px 4px 17px;
   border-radius: 2px;
   color: white;
@@ -116,7 +127,7 @@ button {
 }
 
 .request-status {
-  background-color: #ff001b;
+  background-color: #005ce6;
   padding: 8px;
   font-size: 14px;
   color: white;
@@ -136,4 +147,14 @@ button {
   background-color: white;
   color: #444744;
   font-size: 14.9px;
+}
+
+#set-right {
+  padding-bottom: 40px;
+}
+
+.result-heading {
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 17px;
 }
