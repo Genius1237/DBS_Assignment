@@ -79,7 +79,7 @@ function onClick(event) {
             }
           }
         } else {
-          requestStatusElement.style.textContent = 'Required response not received';
+          requestStatusElement.style.textContent = 'Unsuccessful communication with server';
         }
       }
     }
