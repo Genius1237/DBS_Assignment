@@ -31,8 +31,8 @@ ul {
 
 #report-download {
   position: fixed;
-  top: 120px;
-  right: 129px;
+  top: 170px;
+  margin-left: 17.9px;
   font-family: 'Roboto';
   text-decoration: none;
   background-color: #00b300;
