@@ -57,7 +57,7 @@ function onClick(event) {
     // modify request status element
     let requestStatusElement = document.getElementById('request-status')
     requestStatusElement.style.backgroundColor = '#ff001b';
-    requestStatusElement.style.textContent = 'Submitting..';
+    requestStatusElement.textContent = 'Submitting..';
     requestStatusElement.style.visibility = 'visible';
 
     // make AJAX request
