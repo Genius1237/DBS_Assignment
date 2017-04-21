@@ -75,7 +75,7 @@ function onClick(event) {
           if (response.valid === 'true') {
             requestStatusElement.style.visibility = 'visible';
             requestStatusElement.style.backgroundColor = '#005ce6';
-            requestStatusElement.style.textContent = 'Updated successfully';
+            requestStatusElement.textContent = 'Updated successfully';
           } else {
             // highlight those fields that are invalid
             for (let name of response.invalidFields) {
