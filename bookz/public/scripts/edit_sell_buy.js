@@ -27,12 +27,16 @@ function onClickTopButton(event) {
   var itemList = document.getElementById('item-list');
   if (event.target.id === 'book-button') {
     bookButton.style.borderBottom = '2px solid #dd7019';
+    bookButton.style.borderTop = '2px solid #dd7019';
     itemButton.style.borderBottom = '';
+    itemButton.style.borderTop = '';
     bookList.style.display = 'block';
     itemList.style.display = 'none';
   } else {
     bookButton.style.borderBottom = '';
+    bookButton.style.borderTop = '';
     itemButton.style.borderBottom = '2px solid #dd7019';
+    itemButton.style.borderTop = '2px solid #dd7019';
     bookList.style.display = 'none';
     itemList.style.display = 'block';
   }
@@ -121,6 +125,7 @@ function onClickPostDeleteButton(event) {
 }
 
 function onClickResultBox(event) {
+  if (event.currentTarget.style.boxShadow != '0px 0px 50px 10px black') {
     var inputElements = event.currentTarget.getElementsByTagName('input');
     var buttons = event.currentTarget.getElementsByTagName('button');
     var labels = event.currentTarget.getElementsByTagName('label');
@@ -156,6 +161,7 @@ function onClickResultBox(event) {
     }
 
     event.currentTarget.style.boxShadow = '0px 0px 50px 10px black';
+  }
 }
 
 function onFocusExitFocusButton(event) {
@@ -198,9 +204,11 @@ function onFocusExitFocusButton(event) {
 
 function onFocusInputField(event) {
   event.currentTarget.style.boxShadow = '0px 0px 2px 1px #dd7019';
+  event.currentTarget.style.borderColor = '#dd7019';
 }
 
 function onBlurInputField(event) {
+  event.currentTarget.style.borderColor = '#c2c6c4';
   event.currentTarget.style.boxShadow = '';
 }
 

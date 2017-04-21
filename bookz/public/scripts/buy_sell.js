@@ -42,7 +42,9 @@ function onClickTopButton(event) {
   var itemForm = document.getElementById('item-form');
   if (event.target.id === 'book-button') {
     bookButton.style.borderBottom = '2px solid #dd7019';
+    bookButton.style.borderTop = '2px solid #dd7019';
     itemButton.style.borderBottom = '';
+    itemButton.style.borderTop = '';
     bookForm.style.display = 'block';
     itemForm.style.display = 'none';
     if (page == 'sell') {
@@ -52,7 +54,9 @@ function onClickTopButton(event) {
     }
   } else {
     bookButton.style.borderBottom = '';
+    bookButton.style.borderTop = '';
     itemButton.style.borderBottom = '2px solid #dd7019';
+    itemButton.style.borderTop = '2px solid #dd7019';
     bookForm.style.display = 'none';
     itemForm.style.display = 'block';
     if (page == 'sell') {
@@ -65,9 +69,11 @@ function onClickTopButton(event) {
 
 function onFocusInputField(event) {
   event.currentTarget.style.boxShadow = '0px 0px 2px 1px #dd7019';
+  event.currentTarget.style.borderColor = '#dd7019';
 }
 
 function onBlurInputField(event) {
+  event.currentTarget.style.borderColor = '#c2c6c4';
   event.currentTarget.style.boxShadow = '';
 }
 

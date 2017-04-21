@@ -1,5 +1,5 @@
 html {
-  background-image: url("http://localhost:3000/stylesheets/bg.png");
+  background-image: url("http://localhost:3000/images/hbg.jpg");
   background-repeat: repeat repeat;
   z-index: 0;
 }
@@ -21,7 +21,7 @@ form input {
   padding: 8px;
   border-radius: 2px;
   margin-left: 17px;
-  transition: box-shadow 0.2s ease-in 0s;
+  transition: box-shadow 0.1s ease-in 0s;
 }
 
 form {

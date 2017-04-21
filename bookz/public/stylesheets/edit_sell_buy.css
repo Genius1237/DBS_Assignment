@@ -82,7 +82,7 @@
 }
 
 html {
-  background-image: url("http://localhost:3000/stylesheets/bg.png");
+  background-image: url("http://localhost:3000/images/hbg.jpg");
   background-repeat: repeat repeat;
   z-index: -1;
 }

@@ -15,11 +15,17 @@ function onFocus(event) {
     alertElement.style.backgroundColor = '#005ce6';
   }
   alertElement.style.opacity = '1';
+  if (event.target.name != 'username') {
+    event.target.style.borderColor = 'black';
+  }
 }
 
 function onBlur(event) {
   // make changes to alert box
   var alertElement = document.getElementById(event.target.name + '-alert').style.opacity = '0';
+  if (event.target.name != 'username') {
+    event.target.style.borderColor = '#c2c6c4';
+  }
 }
 
 function onMouseOver(event) {

@@ -1,6 +1,17 @@
+html {
+  background-color: white;
+  z-index: -1;
+}
+
 body {
-  width: 1080px;
+  background-color: white;
+  position: relative;
+  top: 100px;
+  width: 500px;
   margin: auto;
+  border: 1px solid black;
+  box-shadow: 0px 0px 4px 0.1px black;
+  z-index: 1;
 }
 
 button {
@@ -15,7 +26,7 @@ button {
 }
 
 form {
-  padding-left: 400px;
+  padding-left: 147px;
 }
 
 input {
@@ -35,7 +46,7 @@ p {
 
 h2 {
   font-family: 'Roboto';
-  padding-left: 440px; 
+  padding-left: 170px; 
 }
 
 .onhover-info {
