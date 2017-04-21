@@ -3,6 +3,7 @@ var crypto=require('crypto');
 var db=require('../misc/database');
 var key=require('../misc/constants').key;
 var jwt=require('jsonwebtoken');
+var download=require('../misc/qproc');
 var router = express.Router();
 
 //POST request, for login
@@ -221,5 +222,13 @@ router.put('/',function(req,res,next){
 			});
     }
 });
-
-module.exports = router;	
+router.get('/books',function(req,res,next) {
+	var token = req.cookies.name;
+	var decoded = jwt.decode(token);
+	var id = decoded.id;
+	var q1 = "SELECT * FROM BOOK_BUY WHERE user=?";
+	var q2 = "SELECT * FROM BOOK_SELL WHERE user=?";
+	var params = [id];
+	download(res,q1,params,q2,params);
+});
+module.exports = router;
