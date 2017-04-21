@@ -2,3 +2,4 @@ node_modules
 misc/temp.js
 npm-debug.log
 public/stylesheets/bg.svg
+public/xlsx

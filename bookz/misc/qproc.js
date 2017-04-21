@@ -1,6 +1,6 @@
-var express = require('express');
 var db = require('./database');
 var xlsx = require('xlsx');
+var path=require('path');
 function getVal(str,isno)
 {
 	var i = 0;
@@ -64,68 +64,73 @@ function giveType(val)	{
 	}
 	return 's';
 }
-var connection = db();
-var workbook  = { SheetNames:[], Sheets:{} };
-workbook.SheetNames.push('Sheet-JS');
-var worksheet = {};
-connection.query("Select _id,name,phone,username from USER",function(error,results) {
-	if(error)
-	{
-		console.log(error);
-	}
-	else
-	{
-		if(results==null || results.length==0)
+
+module.exports=function(res,query,params){
+	var connection = db();
+	var workbook  = { SheetNames:[], Sheets:{} };
+	workbook.SheetNames.push('Sheet-JS');
+	var worksheet = {};
+	connection.query(query,params,function(error,results) {
+		if(error)
 		{
-			console.log("Empty");
+			console.log(error);
+			res.sendStatus(404);
 		}
 		else
 		{
-			/*for(var i=0;i<results.length;i++)
+			if(results==null || results.length==0)
 			{
-				console.log(typeof(results[i]._id));
-			}*/
-			var uy = Object.keys(results[0]).length;
-			var ly = 1;
-			var lx = 2;
-			var ux = results.length;
-			//console.log(ux);
-			var i=0;
-			var j=0;
-			worksheet['!ref'] = getStr(1,false)+getStr(1,true)+":"+getStr(uy,false)+getStr(ux+1,true);
-			var count = 1;
-			for(var temp in results[0])
-			{
-				var cell = getStr(count,false)+getStr(1,true);
-				count++;
-				var obj = {};
-				//console.log(v+" "+giveType(results[0][temp]));
-				obj.t = 's';
-				obj.v = temp;
-				obj.w = temp;
-				worksheet[cell] = obj;
+				res.send("No Results");
 			}
-			var size = results.length;
-			for(i=0;i<size;i++)
+			else
 			{
-				count = 1;
-				for(var temp in results[i])
+				/*for(var i=0;i<results.length;i++)
 				{
-					var cell = getStr(count,false)+getStr(i+2,true);
-					var obj = {};
-					obj.t = giveType(results[0][temp]);
-					obj.v = results[i][temp];
-					obj.w = results[i][temp];
-					worksheet[cell] = obj;
+					console.log(typeof(results[i]._id));
+				}*/
+				var uy = Object.keys(results[0]).length;
+				var ly = 1;
+				var lx = 2;
+				var ux = results.length;
+				//console.log(ux);
+				var i=0;
+				var j=0;
+				worksheet['!ref'] = getStr(1,false)+getStr(1,true)+":"+getStr(uy,false)+getStr(ux+1,true);
+				var count = 1;
+				for(var temp in results[0])
+				{
+					var cell = getStr(count,false)+getStr(1,true);
 					count++;
+					var obj = {};
+					//console.log(v+" "+giveType(results[0][temp]));
+					obj.t = 's';
+					obj.v = temp;
+					obj.w = temp;
+					worksheet[cell] = obj;
 				}
+				var size = results.length;
+				for(i=0;i<size;i++)
+				{
+					count = 1;
+					for(var temp in results[i])
+					{
+						var cell = getStr(count,false)+getStr(i+2,true);
+						var obj = {};
+						obj.t = giveType(results[0][temp]);
+						obj.v = results[i][temp];
+						obj.w = results[i][temp];
+						worksheet[cell] = obj;
+						count++;
+					}
+				}
+				//console.log(worksheet);
+				var sheet1 = workbook.SheetNames[0];
+				workbook.Sheets[sheet1] = worksheet;
+				var t=(new Date).getTime();
+				xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
+				//console.log(workbook.Sheets);
+				res.sendFile(path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
 			}
-			//console.log(worksheet);
-			var sheet1 = workbook.SheetNames[0];
-			workbook.Sheets[sheet1] = worksheet;
-			xlsx.writeFile(workbook,'out.xlsx');
-			//console.log(workbook.Sheets);
 		}
-	}
-});
-connection.end();
+	});
+};

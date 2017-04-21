@@ -3,6 +3,7 @@ var router = express.Router();
 var path=require('path');
 var jwt=require('jsonwebtoken');
 var db=require('../misc/database');
+var exports=require('../misc/qproc');
 
 router.get('/signin', function(req, res) {
   res.sendFile(path.join(__dirname,'../views/signin.html'));
@@ -51,12 +52,14 @@ router.get('/posts', function(req, res) {
 });
 
 router.get('/search', function(req, res) {
-	if(req.query.query!=null&&req.query.option!=null){
-
+	if(req.query.query!=null&&req.query.option!=null&&req.query.sort!=null){
 		var querystring=req.query.query;
 		var option=req.query.option;
+		var sort=req.query.sort;
 		var table,stable;
 		var optional="";
+		var sorts="";
+		var reqparams=req.params;
 		//console.log(querystring,option);
 		switch(option){
 			case 'bs': 	table = 'BOOK_SELL';
@@ -72,6 +75,11 @@ router.get('/search', function(req, res) {
 			case 'ib': 	table = 'ITEM_BUY';
 						stable='ITEM';
 						break;
+		}
+		if(sort=="i"){
+			sorts="ASC";
+		}else if(sort=="d"){
+			sorts="DESC";
 		}
 		var query,type;
 		if(option[0]=='b'){
@@ -89,7 +97,7 @@ router.get('/search', function(req, res) {
 
 		var parameters=['%'+querystring+'%','%'+querystring+'%'];
 		var connection=db();
-		connection.query(query,parameters,function(error,results){
+		connection.query(query+" ORDER BY price "+sorts,parameters,function(error,results){
 			if(error){
 				console.log(error);
 				res.sendStatus(404);
@@ -173,9 +181,57 @@ router.get('/search', function(req, res) {
 				var token = req.cookies.name;
 				var decoded=jwt.decode(token);
 				var name=decoded.name;
-				res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: type, results: results1, name: name});
+				res.render(path.join(__dirname,'/../views/search.ejs'), {sellOrBuy: type, results: results1, name: name, linkDetails:reqparams});
 			}
 		});
+	}else{
+		res.sendStatus(404);
+	}
+});
+
+router.get('/search/export',function(req,res){
+	if(req.query.query!=null&&req.query.option!=null&&req.query.sort!=null){
+
+		var querystring=req.query.query;
+		var option=req.query.option;
+		var sort=req.body.sort;
+		var table,stable;
+		var optional="";
+		var sorts="";
+		//console.log(querystring,option);
+		switch(option){
+			case 'bs': 	table = 'BOOK_SELL';
+						stable='BOOK';
+						optional="BOOK_SELL.conditiono as 'Condition',";
+						break;
+			case 'bb': 	table = 'BOOK_BUY';
+						stable='BOOK';
+						break;
+			case 'is': 	table = 'ITEM_SELL';
+						stable='ITEM';
+						break;
+			case 'ib': 	table = 'ITEM_BUY';
+						stable='ITEM';
+						break;
+		}
+		if(sort=="i"){
+			sorts="ASC";
+		}else if(sort=="d"){
+			sorts="DESC";
+		}
+		var query,type;
+		if(option[0]=='b'){
+			query = 'SELECT BOOK.title as "Title",BOOK.author as "Author",BOOK.publisher as "Publisher",BOOK.edition as "Edition",BOOK.year as "Year",'+table+'.price as "Cost",'+optional+'USER.name as "Put up by",USER.phone as "Contact" FROM '+table+',BOOK,USER WHERE BOOK._id='+table+'.link_id AND '+table+".user=USER._id AND (BOOK.title LIKE ? OR BOOK.author LIKE ? )";
+		}else if(option[0]=='i'){
+			query = 'SELECT ITEM.name as "Name",ITEM.description as "Description",'+table+'.price as "Price",USER.name as "Put up by",USER.phone as "Contact" FROM '+table+',ITEM,USER WHERE ITEM._id='+table+'.link_id AND '+table+".user=USER._id AND (ITEM.name LIKE ? OR ITEM.description LIKE ? )";
+		}
+		
+		//console.log(query,querystring);
+
+		var parameters=['%'+querystring+'%','%'+querystring+'%'];
+		
+		exports(res,query,parameters);
+
 	}else{
 		res.sendStatus(404);
 	}
