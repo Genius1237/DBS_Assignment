@@ -16,7 +16,7 @@
     <br>
     <br>
     <br>
-    <a href = "http://localhost:3000/search/export?query=<%= query %>&option=<%= option %>&sort=<%= sort %>" id="report-download">Export Results</a>
+    <a href = "http://localhost:3000/search/export?query=<%= linkDetails.query %>&option=<%= linkDetails.option %>&sort=<%= linkDetails.sort %>" id="report-download">Export Results</a>
     <% if (results.length === 0) { %>
       <p id="result-heading">No results match your search</p>
     <% } else { %>
