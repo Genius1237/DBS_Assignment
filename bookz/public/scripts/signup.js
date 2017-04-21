@@ -11,11 +11,13 @@ function onFocus(event) {
   alertElement.textContent = defaultAlertBoxValue[event.target.name];
   alertElement.style.backgroundColor = '#005ce6';
   alertElement.style.opacity = '1';
+  event.target.style.borderColor = 'black'
 }
 
 function onBlur(event) {
   // make changes to alert box
   document.getElementById(event.target.name + '-alert').style.opacity = '0';
+  event.target.style.borderColor = '#c2c6c4'
 }
 
 function onMouseOver(event) {

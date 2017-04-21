@@ -63,6 +63,14 @@ function onClickTopButton(event) {
   }
 }
 
+function onFocusInputField(event) {
+  event.currentTarget.style.boxShadow = '0px 0px 2px 1px #dd7019';
+}
+
+function onBlurInputField(event) {
+  event.currentTarget.style.boxShadow = '';
+}
+
 function onClickBuySellButton(event) {
   // find the active form, item or book
   var activeForm;
@@ -127,6 +135,25 @@ function initialise() {
 
   // listener for submission of data
   buySellButton.addEventListener('click', onClickBuySellButton);
+
+  // box shadow on input fields on focus
+  var els = document.getElementById('book-form').getElementsByTagName('input')
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+  
+  els = document.getElementById('item-form').getElementsByTagName('input');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+
+  els = document.getElementsByTagName('textarea');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
 
   // event to select the book tab
   var clickEvent = new MouseEvent('click');

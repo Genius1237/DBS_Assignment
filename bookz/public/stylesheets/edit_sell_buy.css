@@ -41,6 +41,7 @@
 
 .result-box input {
   display: inline-block;
+  transition: box-shadow 0.2s ease-in 0s;
 }
 
 .result-box:hover {

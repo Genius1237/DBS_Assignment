@@ -20,7 +20,7 @@ form {
 
 input {
   width: 170px;
-  border: 1px solid black;
+  border: 1px solid #c2c6c4;;
   padding: 8px;
   border-radius: 2px;
 }

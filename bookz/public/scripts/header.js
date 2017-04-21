@@ -28,6 +28,14 @@ function onMouseoutSearchButton(event) {
   event.target.style.backgroundColor = 'white';
 }
 
+function onFocusSearchBar(event) {
+  event.target.style.width = '400px';
+}
+
+function onBlurSearchBar(event) {
+  event.target.style.width = '200px';
+}
+
 function initialise() {
   var searchBar = document.getElementById('search-bar');
   var dropDownButton = document.getElementById('drop-down-button');
@@ -48,6 +56,9 @@ function initialise() {
     el.addEventListener('mouseover', onMouseoverDropDownLink)
     el.addEventListener('mouseout', onMouseoutDropDownLink);
   }
+
+  searchBar.addEventListener('focus', onFocusSearchBar);
+  searchBar.addEventListener('blur', onBlurSearchBar);
 }
 
 document.addEventListener('DOMContentLoaded', initialise);

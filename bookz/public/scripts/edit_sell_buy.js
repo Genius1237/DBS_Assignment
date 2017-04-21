@@ -133,7 +133,7 @@ function onClickResultBox(event) {
 
     // modify input elements
     for (let el of inputElements) {
-      el.style.borderWidth = '1px';
+      el.style.border = '1px solid #c2c6c4';
       el.removeAttribute('readonly');
       el.style.cursor = 'auto';
     }
@@ -168,7 +168,7 @@ function onFocusExitFocusButton(event) {
 
   // modify input elements
   for (let el of inputElements) {
-    el.style.borderWidth = '0px';
+    el.style.border = '';
     el.setAttribute('readonly', '');
     el.style.cursor = 'pointer';
   }
@@ -194,6 +194,14 @@ function onFocusExitFocusButton(event) {
   event.currentTarget.parentNode.getElementsByClassName('request-status')[0].style.display = 'none';
 
   event.currentTarget.parentNode.style.boxShadow = '';
+}
+
+function onFocusInputField(event) {
+  event.currentTarget.style.boxShadow = '0px 0px 2px 1px #dd7019';
+}
+
+function onBlurInputField(event) {
+  event.currentTarget.style.boxShadow = '';
 }
 
 function initialise() {
@@ -269,6 +277,16 @@ function initialise() {
     }
   }
 
+  els = document.getElementById('book-list').getElementsByTagName('input');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+  els = document.getElementById('item-list').getElementsByTagName('input');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initialise);

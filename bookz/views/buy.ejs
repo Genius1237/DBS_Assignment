@@ -12,77 +12,75 @@
 
   <body>
     <% include templates/header %>
-    <div id="main-content">
-      <div id="hr"></div>
-      <button type="button" id="book-button">Book</button>
-      <p id="delimiter">|</p>
-      <button type="button" id="item-button">Item</button>
+    <div id="hr"></div>
+    <button type="button" id="book-button">Book</button>
+    <p id="delimiter">|</p>
+    <button type="button" id="item-button">Item</button>
 
-      <form id="book-form">
+    <form id="book-form">
 
-        <h2>Fill in the details of the book that you want to buy</h2>
-        <table>
-          <tr>
-            <td><label>Title</label></td>
-            <td><input type="text" name="title" maxlength="50"></td>
-          </tr>
+      <h2>Fill in the details of the book that you want to buy</h2>
+      <table>
+        <tr>
+          <td><label>Title</label></td>
+          <td><input type="text" name="title" maxlength="50"></td>
+        </tr>
 
-          <tr>
-            <td><label>Author</label></td>
-            <td><input type="text" name="author" maxlength="50"></td>
-          </tr>
+        <tr>
+          <td><label>Author</label></td>
+          <td><input type="text" name="author" maxlength="50"></td>
+        </tr>
 
-          <tr>
-            <td><label>Publisher</label></td>
-            <td><input type="text" name="publisher" maxlength="50"></td>
-          </tr>
+        <tr>
+          <td><label>Publisher</label></td>
+          <td><input type="text" name="publisher" maxlength="50"></td>
+        </tr>
 
-          <tr>
-            <td><label>Edition</label></td>
-            <td><input type="text" name="edition" maxlength="50"></td>
-          </tr>
+        <tr>
+          <td><label>Edition</label></td>
+          <td><input type="text" name="edition" maxlength="50"></td>
+        </tr>
 
-          <tr>
-            <td><label>Year of publishing</label></td>
-            <td><input type="number" name="year" max="9999"></td>
-          </tr>
+        <tr>
+          <td><label>Year of publishing</label></td>
+          <td><input type="number" name="year" max="9999"></td>
+        </tr>
 
-          <tr>
-            <td><label>Willing to pay</label></td>
-            <td><input type="number" name="cost" min="0"></td>
-          </tr>
+        <tr>
+          <td><label>Willing to pay</label></td>
+          <td><input type="number" name="cost" min="0"></td>
+        </tr>
 
-        </table>
-      </form>
+      </table>
+    </form>
 
-      <form id="item-form">
-        <h2>Fill in the details of the item that you want to buy</h2>
-        <table>
+    <form id="item-form">
+      <h2>Fill in the details of the item that you want to buy</h2>
+      <table>
 
-          <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" name="name" maxlength="50"></td>
-          </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td><input type="text" name="name" maxlength="50"></td>
+        </tr>
 
-          <tr>
-            <td><label>Description</label></td>
-            <td><textarea name="description" id="description" maxlength="500"></textarea></td>
-          </tr>
+        <tr>
+          <td><label>Description</label></td>
+          <td><textarea name="description" id="description" maxlength="500"></textarea></td>
+        </tr>
 
-          <tr>
-            <td><label>Willing to pay</label></td>
-            <td><input type="number" name="cost" min="0"></td>
-          </tr>
-          
-        </table>
-      </form>
+        <tr>
+          <td><label>Willing to pay</label></td>
+          <td><input type="number" name="cost" min="0"></td>
+        </tr>
+        
+      </table>
+    </form>
 
-      <button type="button" id="buy-sell-button">Buy</button>
-      <p id="request-status"></p>
-      <div id="set-height"></div>
-      <script src="http://localhost:3000/scripts/buy_sell.js"></script>
-      <script src="http://localhost:3000/scripts/header.js"></script>
-    </div>
+    <button type="button" id="buy-sell-button">Buy</button>
+    <p id="request-status"></p>
+    <div id="set-height"></div>
+    <script src="http://localhost:3000/scripts/buy_sell.js"></script>
+    <script src="http://localhost:3000/scripts/header.js"></script>
   </body>
 
 </html>
