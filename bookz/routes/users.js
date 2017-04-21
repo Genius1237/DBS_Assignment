@@ -226,8 +226,8 @@ router.get('/books',function(req,res,next) {
 	var token = req.cookies.name;
 	var decoded = jwt.decode(token);
 	var id = decoded.id;
-	var q1 = "SELECT * FROM BOOK_BUY WHERE user=?";
-	var q2 = "SELECT * FROM BOOK_SELL WHERE user=?";
+	var q1 = "SELECT * FROM BOOK WHERE BOOK._id IN (SELECT BOOK_BUY.link_id from BOOK_BUY WHERE BOOK_BUY.user=?)";
+	var q2 = "SELECT * FROM BOOK WHERE BOOK._id IN (SELECT BOOK_SELL.link_id from BOOK_SELL WHERE BOOK_SELL.user=?)";
 	var params = [id];
 	download(res,q1,params,q2,params);
 });
@@ -235,8 +235,8 @@ router.get('/items',function(req,res,next) {
 	var token = req.cookies.name;
 	var decoded = jwt.decode(token);
 	var id = decoded.id;
-	var q1 = "SELECT * FROM ITEM_BUY WHERE user=?";
-	var q2 = "SELECT * FROM ITEM_SELL WHERE user=?";
+	var q1 = "SELECT * FROM ITEM WHERE ITEM._id IN (SELECT ITEM_BUY.link_id from ITEM_BUY WHERE ITEM_BUY.user=?)";
+	var q2 = "SELECT * FROM ITEM WHERE ITEM._id IN (SELECT ITEM_SELL.link_id from ITEM_SELL WHERE ITEM_SELL.user=?)";
 	var params = [id];
 	download(res,q1,params,q2,params);
 });
