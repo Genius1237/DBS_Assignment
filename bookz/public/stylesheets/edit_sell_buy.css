@@ -139,8 +139,9 @@ button {
 }
 
 .result-list textarea {
+  transition: box-shadow 0.2s ease-in 0s;
   width: 250px;
-  border: 1px solid black;
+  border: 1px solid #c2c6c4;
   padding: 8px;
   border-radius: 2px;
   font-family: 'Roboto';

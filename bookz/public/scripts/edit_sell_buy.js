@@ -145,7 +145,7 @@ function onClickResultBox(event) {
 
     // modify textarea
     for (let el of textareas) {
-      //el.style.borderWidth = '1px';
+      el.style.border = '1px solid #c2c6c4';
       el.removeAttribute('disabled');
       el.style.cursor = 'auto';
     }
@@ -295,6 +295,18 @@ function initialise() {
     el.addEventListener('focus', onFocusInputField);
     el.addEventListener('blur', onBlurInputField);
   }
+
+  els = document.getElementById('book-list').getElementsByTagName('textarea');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+  els = document.getElementById('item-list').getElementsByTagName('textarea');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+
 }
 
 document.addEventListener('DOMContentLoaded', initialise);

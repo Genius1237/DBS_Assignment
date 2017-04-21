@@ -40,6 +40,7 @@ body {
   margin-top: 40px;
   display: block;
   text-align: center;
+  transition: box-shadow 0.2s ease-in 0s;
 }
 
 #section-1 {
@@ -48,8 +49,8 @@ body {
   font-weight: 800;
   font-size: 28px;
   text-align: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 140px;
+  padding-bottom: 140px;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   margin-top: 48px;
@@ -57,51 +58,55 @@ body {
 }
 
 #section-2 {
-  padding-top: 140px;
-  padding-bottom: 140px;
+  padding-top: 70px;
+  padding-bottom: 70px;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   margin: 0px;
 }
 
 #section-2 p {
+  display: inline-block;
+  position: relative;
   color: black;
   font-family: 'Roboto';
-  font-size: 28px;
+  font-size: 21.9px;
   text-align: left;
+  width: 500px;
+  bottom: 120px;
+  margin-left: 40px;
 }
 
 #section-2 img {
-  color: black;
-  font-family: 'Roboto';
-  font-size: 28px;
-  text-align: left;
+  display: inline-block;
+  margin-left: 140px;
+  height: 340px;
+  width: 180px;
 }
 
 #section-3 {
-  padding-top: 140px;
-  padding-bottom: 140px;
+  padding-top: 90px;
+  padding-bottom: 70px;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   margin: 0px;
+}
+
+#section-3 img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 57px;
 }
 
 #section-3 p {
   color: black;
   font-family: 'Roboto';
   font-size: 21.9px;
-  display: inline-block;
   width: 500px;
-  text-align: right;
-}
-
-#section-3 img {
-  color: black;
-  font-family: 'Roboto';
-  font-size: 21.9px;
-  display: inline-block;
-  width: 500px;
-  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
 }
 
 #section-4 {
