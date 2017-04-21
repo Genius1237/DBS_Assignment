@@ -29,12 +29,12 @@ function onMouseoutSearchButton(event) {
 }
 
 function onFocusSearchBar(event) {
-  event.target.style.width = '440px';
+  event.target.style.width = '380px';
 }
 
 function onBlurSearchBar(event) {
   if (document.getElementById('search-bar').value == '') {
-    event.target.style.width = '200px';
+    event.target.style.width = '180px';
   }
 }
 

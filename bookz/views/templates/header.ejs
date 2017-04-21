@@ -1,7 +1,7 @@
 <div id="header-container">
   <div id="header">
     
-    <p id="greeting">Hi <%= name %>, what do you need?</p>
+    <p id="greeting">Hi <%= name %></p>
     
     <form id="search-form" method="get" action="/public/search">
       <input type="text" name="query" id="search-bar" placeholder="Search here" maxlength="500">
@@ -11,6 +11,11 @@
         <option value="bb">Books wanted</option>
         <option value="is">Items for sale</option>
         <option value="ib">Items wanted</option>
+      </select>
+
+      <select name="sort" id="sort-option">
+        <option value="i">Sort by increasing price</option>
+        <option value="d">Sort by decreasing price</option>
       </select>
 
       <button id="search-button" type="submit">Search</button>

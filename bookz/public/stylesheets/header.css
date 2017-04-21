@@ -23,6 +23,17 @@
   background-color: white;
 }
 
+#sort-option {
+  margin-left: 10px;
+  border: 4px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+select option {
+  font-family: 'Roboto';
+}
+
 #drop-down-button {
   float: right;
   padding-right: 10px;
