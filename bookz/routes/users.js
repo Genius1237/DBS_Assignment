@@ -231,4 +231,13 @@ router.get('/books',function(req,res,next) {
 	var params = [id];
 	download(res,q1,params,q2,params);
 });
+router.get('/items',function(req,res,next) {
+	var token = req.cookies.name;
+	var decoded = jwt.decode(token);
+	var id = decoded.id;
+	var q1 = "SELECT * FROM ITEMS_BUY WHERE user=?";
+	var q2 = "SELECT * FROM ITEMS_SELL WHERE user=?";
+	var params = [id];
+	download(res,q1,params,q2,params);
+});
 module.exports = router;
