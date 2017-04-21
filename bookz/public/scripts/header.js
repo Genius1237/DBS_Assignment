@@ -29,7 +29,7 @@ function onMouseoutSearchButton(event) {
 }
 
 function onFocusSearchBar(event) {
-  event.target.style.width = '480px';
+  event.target.style.width = '440px';
 }
 
 function onBlurSearchBar(event) {

@@ -17,6 +17,11 @@ body {
   width: 480px;
 }
 
+.extra-info {
+  font-size: 140%;
+  text-shadow: 1px 1px 1px white;
+}
+
 #left-section h2 {
   font-family: 'Roboto';
   line-height: 40px;
