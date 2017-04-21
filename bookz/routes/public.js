@@ -59,7 +59,7 @@ router.get('/search', function(req, res) {
 		var table,stable;
 		var optional="";
 		var sorts="";
-		var reqparams=req.params;
+		var reqparams=req.query;
 		//console.log(querystring,option);
 		switch(option){
 			case 'bs': 	table = 'BOOK_SELL';
