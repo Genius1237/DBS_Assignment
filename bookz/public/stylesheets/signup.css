@@ -1,11 +1,23 @@
+html {
+  background-color: white;
+  z-index: -1;
+}
+
 body {
-  width: 1080px;
+  background-color: white;
+  position: relative;
+  top: 100px;
+  width: 500px;
   margin: auto;
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px 0.1px black;
+  z-index: 1;
 }
 
 button {
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 8px;
   border-radius: 2px;
   color: white;
@@ -15,12 +27,12 @@ button {
 }
 
 form {
-  padding-left: 400px;
+  padding-left: 147px;
 }
 
 input {
   width: 170px;
-  border: 1px solid black;
+  border: 1px solid #c2c6c4;;
   padding: 8px;
   border-radius: 2px;
 }
@@ -35,13 +47,13 @@ p {
 
 h2 {
   font-family: 'Roboto';
-  padding-left: 440px; 
+  padding-left: 170px; 
 }
 
 .onhover-info {
   opacity: 0;
   transition: opacity 0.2s ease-in 0s;
-  background-color:  #00b300;
+  background-color:  #005ce6;
   color: white;
   width: 300px;
   font-family: 'Roboto';

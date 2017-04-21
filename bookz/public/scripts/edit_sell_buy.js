@@ -6,7 +6,7 @@ function onMouseOver(event) {
   if (event.target.className === 'post-delete-button' || event.target.className === 'post-update-button') {
     event.target.style.boxShadow = "0px 0px 2px 1px black";
   } else {
-    event.target.style.backgroundColor = '#444744';
+    event.target.style.backgroundColor = '#dd7019';
     event.target.style.color = 'white';
   }
 }
@@ -26,13 +26,17 @@ function onClickTopButton(event) {
   var bookList = document.getElementById('book-list');
   var itemList = document.getElementById('item-list');
   if (event.target.id === 'book-button') {
-    bookButton.style.borderBottom = '2px solid black';
+    bookButton.style.borderBottom = '2px solid #dd7019';
+    bookButton.style.borderTop = '2px solid #dd7019';
     itemButton.style.borderBottom = '';
+    itemButton.style.borderTop = '';
     bookList.style.display = 'block';
     itemList.style.display = 'none';
   } else {
     bookButton.style.borderBottom = '';
-    itemButton.style.borderBottom = '2px solid black';
+    bookButton.style.borderTop = '';
+    itemButton.style.borderBottom = '2px solid #dd7019';
+    itemButton.style.borderTop = '2px solid #dd7019';
     bookList.style.display = 'none';
     itemList.style.display = 'block';
   }
@@ -71,7 +75,7 @@ function onClickPostUpdateButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.backgroundColor = '#00b300';
+        requestStatus.style.backgroundColor = '#005ce6';
         requestStatus.textContent = 'Updated Successfully';
         requestStatus.style.display = 'inline-block';
       } else {
@@ -107,7 +111,7 @@ function onClickPostDeleteButton(event) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
-        requestStatus.style.backgroundColor = '#00b300';
+        requestStatus.style.backgroundColor = '#005ce6';
         requestStatus.textContent = 'Deleted Successfully';
         requestStatus.style.display = 'inline-block';
         window.location.reload(true);
@@ -121,6 +125,7 @@ function onClickPostDeleteButton(event) {
 }
 
 function onClickResultBox(event) {
+  if (event.currentTarget.style.boxShadow != '0px 0px 50px 10px black') {
     var inputElements = event.currentTarget.getElementsByTagName('input');
     var buttons = event.currentTarget.getElementsByTagName('button');
     var labels = event.currentTarget.getElementsByTagName('label');
@@ -133,7 +138,7 @@ function onClickResultBox(event) {
 
     // modify input elements
     for (let el of inputElements) {
-      el.style.borderWidth = '1px';
+      el.style.border = '1px solid #c2c6c4';
       el.removeAttribute('readonly');
       el.style.cursor = 'auto';
     }
@@ -156,6 +161,7 @@ function onClickResultBox(event) {
     }
 
     event.currentTarget.style.boxShadow = '0px 0px 50px 10px black';
+  }
 }
 
 function onFocusExitFocusButton(event) {
@@ -168,7 +174,7 @@ function onFocusExitFocusButton(event) {
 
   // modify input elements
   for (let el of inputElements) {
-    el.style.borderWidth = '0px';
+    el.style.border = '';
     el.setAttribute('readonly', '');
     el.style.cursor = 'pointer';
   }
@@ -194,6 +200,16 @@ function onFocusExitFocusButton(event) {
   event.currentTarget.parentNode.getElementsByClassName('request-status')[0].style.display = 'none';
 
   event.currentTarget.parentNode.style.boxShadow = '';
+}
+
+function onFocusInputField(event) {
+  event.currentTarget.style.boxShadow = '0px 0px 2px 1px #dd7019';
+  event.currentTarget.style.borderColor = '#dd7019';
+}
+
+function onBlurInputField(event) {
+  event.currentTarget.style.borderColor = '#c2c6c4';
+  event.currentTarget.style.boxShadow = '';
 }
 
 function initialise() {
@@ -269,6 +285,16 @@ function initialise() {
     }
   }
 
+  els = document.getElementById('book-list').getElementsByTagName('input');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
+  els = document.getElementById('item-list').getElementsByTagName('input');
+  for (let el of els) {
+    el.addEventListener('focus', onFocusInputField);
+    el.addEventListener('blur', onBlurInputField);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initialise);

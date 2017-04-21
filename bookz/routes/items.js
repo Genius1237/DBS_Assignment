@@ -79,7 +79,6 @@ router.post('/', function(req, res, next) {
 			res.sendStatus(404);
 		}
 	}
-
 });
 
 router.put('/', function(req, res, next) {
@@ -176,7 +175,6 @@ router.delete('/', function(req, res, next) {
 			}
 		});
 	}
-
 });
 
 module.exports = router;

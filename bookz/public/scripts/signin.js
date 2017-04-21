@@ -1,9 +1,11 @@
 function onFocus(event) {
   document.getElementById(event.target.name + '-alert').style.opacity = '1';
+  event.target.style.borderColor = 'black';
 }
 
 function onBlur(event) {
   document.getElementById(event.target.name + '-alert').style.opacity = '0';
+  event.target.style.borderColor = '#c2c6c4';
 }
 
 function onMouseOver(event) {

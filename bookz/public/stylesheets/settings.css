@@ -1,11 +1,23 @@
+html {
+  background-image: url("http://localhost:3000/images/hbg.jpg");
+  background-repeat: repeat repeat;
+  z-index: 0;
+}
+
 body {
-  width: 1080px;
+  max-width: 1072px;
   margin: auto;
+  padding-top: 10px;
+  background-color: white;
+  z-index: 1;
+  padding-left: 4px;
+  padding-right: 4px;
+  box-shadow: 0px 0px 4px 0.1px black;
 }
 
 input {
   width: 170px;
-  border: 1px solid black;
+  border: 1px solid #c2c6c4;
   padding: 8px;
   border-radius: 2px;
 }
@@ -35,7 +47,7 @@ h2 {
 .onhover-info {
   opacity: 0;
   transition: opacity 0.2s ease-in 0s;
-  background-color:  #00b300;
+  background-color:  #005ce6;
   color: white;
   width: 300px;
   font-family: 'Roboto';
@@ -48,7 +60,7 @@ h2 {
 
 #request-status {
   visibility: hidden;
-  background-color: #ff001b;
+  background-color: #005ce6;
   padding: 8px;
   font-size: 14px;
   color: white;
@@ -57,16 +69,20 @@ h2 {
   margin-left: 8px;
 }
 
+#set-right {
+  padding-bottom: 257px;
+}
+
 #hr {
   margin-top: 80px;
-  height: 1px;
+  height: 10px;
   z-index: 0;
-  background-color: black;
+  background-color: white;
 }
 
 #update-button {
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 8px;
   border-radius: 2px;
   color: white;

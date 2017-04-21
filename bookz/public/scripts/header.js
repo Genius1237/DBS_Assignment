@@ -11,7 +11,7 @@ function onBlurDropDownButton(event) {
 }
 
 function onMouseoverDropDownLink(event) {
-  event.target.parentElement.style.backgroundColor = '#444744';
+  event.target.parentElement.style.backgroundColor = '#dd7019';
   event.target.style.color = 'white';  
 }
 
@@ -21,11 +21,21 @@ function onMouseoutDropDownLink(event) {
 }
 
 function onMouseoverSearchButton(event) {
-  event.target.style.backgroundColor = '#d7dce8';
+  event.target.style.backgroundColor = '#ba590d';
 }
 
 function onMouseoutSearchButton(event) {
-  event.target.style.backgroundColor = 'white';
+  event.target.style.backgroundColor = '#dd7019';
+}
+
+function onFocusSearchBar(event) {
+  event.target.style.width = '440px';
+}
+
+function onBlurSearchBar(event) {
+  if (document.getElementById('search-bar').value == '') {
+    event.target.style.width = '200px';
+  }
 }
 
 function initialise() {
@@ -48,6 +58,9 @@ function initialise() {
     el.addEventListener('mouseover', onMouseoverDropDownLink)
     el.addEventListener('mouseout', onMouseoutDropDownLink);
   }
+
+  searchBar.addEventListener('focus', onFocusSearchBar);
+  searchBar.addEventListener('blur', onBlurSearchBar);
 }
 
 document.addEventListener('DOMContentLoaded', initialise);

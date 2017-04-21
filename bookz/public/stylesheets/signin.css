@@ -1,12 +1,14 @@
 html {
   height: 100%;
-  background-color: white;
+  background-image: url("http://localhost:3000/images/hbg.jpg");
+  background-repeat: repeat repeat;
 }
 
 body {
 	max-width: 1080px;
   margin: auto;
-  margin-top: 190px;
+  margin-top: 14%;
+  margin-left: 17%;
   position: relative;
 }
 
@@ -15,11 +17,16 @@ body {
   width: 480px;
 }
 
+.extra-info {
+  font-size: 140%;
+  text-shadow: 1px 1px 1px white;
+}
+
 #left-section h2 {
   font-family: 'Roboto';
   line-height: 40px;
   color: black;
-  font-weight: 200;
+  text-shadow: 1px 1px 4px white;
   font-size: 35px;
   margin-top: 100px;
 }
@@ -35,7 +42,7 @@ body {
 .onhover-info {
   opacity: 0;
   transition: opacity 0.2s ease-in 0s;
-  background-color:  #00b300;
+  background-color:  #005ce6;
   color: white;
   width: 300px;
   font-size: 14px;
@@ -46,7 +53,7 @@ body {
 
 input {
   width: 170px;
-  border: 1px solid black;
+  border: 1px solid #c2c6c4;;
   padding: 8px;
   border-radius: 2px;
 }
@@ -56,8 +63,8 @@ input {
 }
 
 button {
-  border: 1px solid #005ce6;
-  background-color: #005ce6;
+  border: 1px solid #00b300;
+  background-color: #00b300;
   padding: 8px;
   border-radius: 2px;
   color: white;
