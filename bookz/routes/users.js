@@ -37,6 +37,7 @@ router.post('/signin', function(req, res, next) {
 					var id=results[0]._id;
 					var name=results[0].name;
 					var ph=results[0].phone;
+					//console.log(id);
 					var token=jwt.sign({
 										'username': username,
 										'id':id,
@@ -137,7 +138,7 @@ router.put('/',function(req,res,next){
 		if(/^\d{10}$/.test(phone)==false){
 			invalidfields.push('phone');
 		}
-
+		var phone=parseInt(phone);
 		if(invalidfields.length!=0){
 			res.send({
 				valid: 'false',
@@ -162,13 +163,13 @@ router.put('/',function(req,res,next){
 						console.log(error);
 					}else{
 						if(results.length!=0) {
-							res.clearCookie('name');
 							var token = jwt.sign({
 													'username' : decoded.username,
-													'id' : decoded._id,
+													'id' : decoded.id,
 													'name' : name,
 													'phone' : phone
 												},key);
+							res.clearCookie('name');
 							res.cookie('name',token);
 							res.json({
 								invalidFields :[],
@@ -193,13 +194,13 @@ router.put('/',function(req,res,next){
 							});
 					}else{
 						if(results.length!=0) {
-							res.clearCookie('name');
 							var token = jwt.sign({
 													'username' : decoded.username,
-													'id' : decoded._id,
+													'id' : decoded.id,
 													'name' : name,
 													'phone' : phone
 												},key);
+							res.clearCookie('name');
 							res.cookie('name',token);
 							res.json({
 								invalidFields :[],
