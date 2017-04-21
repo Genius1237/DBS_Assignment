@@ -22,7 +22,92 @@ body {
   background-color: black;
 }
 
-#reports-title {
+#report-title {
   font-family: 'Roboto';
   font-size: 21.9px;
+  margin-left: 40px;
+}
+
+.report-download {
+  text-decoration: none;
+  background-color: #00b300;
+  padding: 10px;
+  color: white;
+  font-family: 'Roboto';
+  border-radius: 2px;
+  width: 250px;
+  margin-left: 40px;
+  margin-top: 40px;
+  display: block;
+  text-align: center;
+}
+
+#section-1 {
+  color: black;
+  font-family: 'Roboto';
+  font-weight: 800;
+  font-size: 28px;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin-top: 48px;
+  margin-bottom: 0px;
+}
+
+#section-2 {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin: 0px;
+}
+
+#section-2 p {
+  color: black;
+  font-family: 'Roboto';
+  font-size: 28px;
+  text-align: left;
+}
+
+#section-2 img {
+  color: black;
+  font-family: 'Roboto';
+  font-size: 28px;
+  text-align: left;
+}
+
+#section-3 {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin: 0px;
+}
+
+#section-3 p {
+  color: black;
+  font-family: 'Roboto';
+  font-size: 21.9px;
+  display: inline-block;
+  width: 500px;
+  text-align: right;
+}
+
+#section-3 img {
+  color: black;
+  font-family: 'Roboto';
+  font-size: 21.9px;
+  display: inline-block;
+  width: 500px;
+  text-align: right;
+}
+
+#section-4 {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin: 0px;
 }
