@@ -126,9 +126,12 @@ router.put('/',function(req,res,next){
 	var password=req.body.password;
 	var name=req.body.name;
 	var phone=req.body.phone;
-	if (username != null && password != null && username!="" &&password!=""&&name != null && phone != null && name!="" &&phone!="") {
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var uid=decoded.id;
+	if (password != null&&password!=""&&name != null && phone != null && name!="" &&phone!="") {
 		var invalidfields=[];
-		if(password.length<8||password.length>20 || password==='********'){
+		if(password.length<8||password.length>20){
 			invalidfields.push('password');
 		}
 		if(/^\d{10}$/.test(phone)==false){
@@ -143,41 +146,79 @@ router.put('/',function(req,res,next){
 			console.log(invalidfields);
 			res.end();
 		}else{
-			var length=10;	
-			var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
-			var hash=crypto.createHmac('sha512',salt);
-			hash.update(password);
-			var hashed=hash.digest('hex');
+			if(password!='********'){
+				var length=10;	
+				var salt=crypto.randomBytes(Math.ceil(length/2)).toString('hex').slice(0,length);
+				var hash=crypto.createHmac('sha512',salt);
+				hash.update(password);
+				var hashed=hash.digest('hex');
 
-			var toinsert=salt+'.'+hashed;
-			var post=[name,phone,toinsert,username];
-			var connection=db();
-			connection.query('UPDATE USER SET name=?,phone=?,password=? WHERE username=?',post,function(error,results){
-				if(error){
-					//console.log(error.code);
-					console.log(error);
-				}else{
-					if(results.length!=0) {
-						res.clearCookie('name');
-						var token = jwt.sign({
-												'username' : results[0].username,
-												'id' : results[0]._id,
-												'name' : results[0].name,
-												'phone' : results[0].phone
-											},key);
-						res.cookie('name',token);
-						res.json({
-							valid:"true"
-						});
+				var toinsert=salt+'.'+hashed;
+				var post=[name,phone,toinsert,uid];
+				var connection=db();
+				connection.query('UPDATE USER SET name=?,phone=?,password=? WHERE _id=?',post,function(error,results){
+					if(error){
+						//console.log(error.code);
+						console.log(error);
 					}else{
-						res.json({
-							valid:"false"
-						});
+						if(results.length!=0) {
+							res.clearCookie('name');
+							var token = jwt.sign({
+													'username' : decoded.username,
+													'id' : decoded._id,
+													'name' : name,
+													'phone' : phone
+												},key);
+							res.cookie('name',token);
+							res.json({
+								invalidFields :[],
+								valid:"true"
+							});
+						}else{
+							res.json({
+								valid:"false"
+							});
+						}
 					}
-				}
+				});
+			}else{
+				var post=[name,phone,uid];
+				var connection=db();
+				connection.query('UPDATE USER SET name=?,phone=? WHERE _id=?',post,function(error,results){
+					if(error){
+						//console.log(error.code);
+						console.log(error);
+						res.json({
+								valid:"false"
+							});
+					}else{
+						if(results.length!=0) {
+							res.clearCookie('name');
+							var token = jwt.sign({
+													'username' : decoded.username,
+													'id' : decoded._id,
+													'name' : name,
+													'phone' : phone
+												},key);
+							res.cookie('name',token);
+							res.json({
+								invalidFields :[],
+								valid:"true"
+							});
+						}else{
+							res.json({
+								valid:"false"
+							});
+						}
+					}
+				});	
+			}
+		}	
+    }else{
+    	res.json({
+				valid:"false"
 			});
-		}
     }
 });
 
-module.exports = router;
+module.exports = router;	

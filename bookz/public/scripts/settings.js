@@ -51,7 +51,7 @@ function onClick(event) {
     // modify request status element
     let requestStatusElement = document.getElementById('request-status')
     requestStatusElement.style.backgroundColor = '#ff001b';
-    requestStatusElement.style.textContent = 'Submitting..';
+    requestStatusElement.textContent = 'Submitting..';
     requestStatusElement.style.visibility = 'visible';
 
     // make AJAX request
@@ -69,7 +69,7 @@ function onClick(event) {
           if (response.valid === 'true') {
             requestStatusElement.style.visibility = 'visible';
             requestStatusElement.style.backgroundColor = '#00b300';
-            requestStatusElement.style.textContent = 'Updated successfully';
+            requestStatusElement.textContent = 'Updated successfully';
           } else {
             // highlight those fields that are invalid
             for (let name of response.invalidFields) {
