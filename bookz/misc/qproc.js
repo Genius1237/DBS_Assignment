@@ -83,7 +83,7 @@ module.exports=function(res,query1,params1,query2,params2){
 			{
 				var sheet1 = workbook.SheetNames[0];
 				workbook.Sheets[sheet1] = worksheet1;
-				res.send("No Results");
+				//res.send("No Results");
 			}
 			else
 			{
@@ -150,7 +150,7 @@ module.exports=function(res,query1,params1,query2,params2){
 			{
 				var sheet1 = workbook.SheetNames[1];
 				workbook.Sheets[sheet1] = worksheet2;
-				res.send("No Results");
+				//res.send("No Results");
 			}
 			else
 			{
