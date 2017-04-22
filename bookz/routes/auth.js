@@ -5,7 +5,6 @@ var key = require('../misc/constants').key;
 var router = express.Router();
 
 router.get('/',function(req,res){
-  console.log('Here');
   if(req.path='/'){
     res.redirect('/public/home');  
   }
@@ -21,7 +20,7 @@ router.use('/', function(req, res, next) {
             if ((req.path === '/public/signin' || req.path === '/public/signup'|| (req.path==='/users'&&req.method==='POST')||(req.path==='/users/signin'))){
                 next();
               }else{
-                console.log('Redirecting from: '+req.path);
+                //console.log('Redirecting from: '+req.path);
                 res.redirect('/public/signin');
               }
             }

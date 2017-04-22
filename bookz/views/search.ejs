@@ -17,7 +17,7 @@
     <br>
     <br>
     <% if (results.length != 0) { %> 
-      <a href = "http://localhost:3000/public/search/export?query=<%= linkDetails.query %>&option=<%= linkDetails.option %>&sort=<%= linkDetails.sort %>" id="report-download">Export Results</a>
+      <a href = "http://localhost:3000/public/search/export?query=<%= linkDetails.query %>&option=<%= linkDetails.option %>&sort=<%= linkDetails.sort %>" id="report-download" download="search.xlsx">Export Results</a>
     <% } %>
     <% if (results.length === 0) { %>
       <p id="result-heading">No results match your search</p>
