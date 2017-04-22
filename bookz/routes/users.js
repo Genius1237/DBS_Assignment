@@ -222,4 +222,25 @@ router.put('/',function(req,res,next){
     }
 });
 
+router.get('/books',function(req,res){
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var id=decoded.id;
+
+	var query1="SELECT title as 'Title',author as 'Author',publisher 'Publisher',edition as 'Edition',year as 'Year',price as 'Price',condition as 'Condition' FROM BOOK,BOOK_SELL WHERE BOOK_SELL.link_id=BOOK._id AND BOOK_SELL.user=?";
+	var params1=[id];
+	var query2="SELECT title as 'Title',author as 'Author',publisher 'Publisher',edition as 'Edition',year as 'Year',price as 'Price' FROM BOOK,BOOK_BUY WHERE BOOK_BUY.link_id=BOOK._id AND BOOK_BUY.user=?";
+
+});
+
+router.get('/items',function(req,res){
+	var token = req.cookies.name;
+	var decoded=jwt.decode(token);
+	var id=decoded.id;
+
+	var query1="SELECT name as 'Name',description as 'Description',price as 'Price' from ITEM,ITEM_SELL WHERE ITEM._id=ITEM_SELL.link_id AND ITEM_SELL.user=?";
+	var params1=[id];
+	var query1="SELECT name as 'Name',description as 'Description',price as 'Price' from ITEM,ITEM_BUY WHERE ITEM._id=ITEM_BUY.link_id AND ITEM_BUY.user=?";
+});
+
 module.exports = router;	

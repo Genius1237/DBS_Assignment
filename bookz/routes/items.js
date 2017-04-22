@@ -164,7 +164,7 @@ router.delete('/', function(req, res, next) {
 
 		var query="DELETE FROM ITEM WHERE _id=?";
 		var params=[id];
-		console.log(query,id);
+		//console.log(query,id);
 		var connection=db();
 		connection.query(query,params,function(error,result){
 			if(error){
