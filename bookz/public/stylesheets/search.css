@@ -41,6 +41,7 @@ ul {
   border-radius: 2px;
   color: white;
   width: 120px;
+  transition: box-shadow 0.2s ease-in 0s;
 }
 
 .result-property {

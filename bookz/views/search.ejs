@@ -16,7 +16,9 @@
     <br>
     <br>
     <br>
-    <a href = "http://localhost:3000/public/search/export?query=<%= linkDetails.query %>&option=<%= linkDetails.option %>&sort=<%= linkDetails.sort %>" id="report-download">Export Results</a>
+    <% if (results.length != 0) { %> 
+      <a href = "http://localhost:3000/public/search/export?query=<%= linkDetails.query %>&option=<%= linkDetails.option %>&sort=<%= linkDetails.sort %>" id="report-download">Export Results</a>
+    <% } %>
     <% if (results.length === 0) { %>
       <p id="result-heading">No results match your search</p>
     <% } else { %>
@@ -54,79 +56,8 @@
     <br>
     <br>
 
+    <script src="http://localhost:3000/scripts/search.js"></script>
     <script src="http://localhost:3000/scripts/header.js"></script>
   </body>
 
 </html>
-
-<!--
-
-var results = [
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  },
-  {
-    what: {
-      'Title': 'abcd',
-      'Author': 'nope',
-      'Publisher': 'nope',
-      'Year of publishing': 'nope',
-      'Edition': 'nope',
-      'Condition': 'nope',
-      'Cost': 'nope'
-    },
-    who: {
-      'Name': 'abcd',
-      'Phone': '0000'
-    }
-  }
-]
-
-app.get('/search', function(req, res) {
-  res.render(__dirname + '/search.ejs', {sell: 'true', results: results, name: 'namehere'});
-});
-
-
--->

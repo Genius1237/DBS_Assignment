@@ -169,8 +169,7 @@ router.put('/', function(req, res, next) {
 
 router.delete('/', function(req, res, next) {
 	var bookid=req.body.id;
-
-	if(bookid!=null&&bookid!=""&&category!=null&&category!=""){
+	if(bookid!=null&&bookid!=""){
 
 		var id=parseInt(bookid);
 		var table="";

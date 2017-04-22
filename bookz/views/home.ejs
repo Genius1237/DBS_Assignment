@@ -12,10 +12,30 @@
 
   <body>
     <% include templates/header %>
-    <div id="hr"></div>
-    <p id="reports-title">Reports</p>
-    <a href="http://localhost:3000/users/books"></a>
-    <a href="http://localhost:3000/users/items"></a>
+    
+    <p id="section-1">Welcome<br>We hope you will have a wonderful experience with us!</p>
+
+    <div id="section-2">
+      <img src="http://localhost:3000/images/dropdown.png">
+      <p>
+        Clicking on the top right corner of the web page displays the drop down.
+        This can be used to navigate to different pages of the website
+      </p>
+    </div>
+
+    <div id="section-3">
+      <img src="http://localhost:3000/images/search.png">
+      <p>
+        Use the search bar on the top for your searches</p>
+      </p>
+    </div>
+
+    <div id="section-4">
+      <p id="report-title">Reports</p>
+      <a href="http://localhost:3000/users/books" class="report-download" download="book_posts.xlsx">Download report of books posted</a>
+      <a href="http://localhost:3000/users/items" class="report-download" download="item_posts.xlsx">Download report of items posted</a>
+    </div>
+
     <script src="http://localhost:3000/scripts/home.js"></script>
     <script src="http://localhost:3000/scripts/header.js"></script>
   </body>

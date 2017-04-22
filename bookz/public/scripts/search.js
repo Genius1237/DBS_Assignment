@@ -7,11 +7,8 @@ function onMouseoutReportDownload(event) {
 }
 
 function initialise() {
-  var els = document.getElementsByClassName('report-download');
-  for (let el of els) {
-    el.addEventListener('mouseover', onMouseoverReportDownload);
-    el.addEventListener('mouseout', onMouseoutReportDownload);
-  }
+  document.getElementById('report-download').addEventListener('mouseover', onMouseoverReportDownload);
+  document.getElementById('report-download').addEventListener('mouseout', onMouseoutReportDownload);
 }
 
 document.addEventListener('DOMContentLoaded', initialise);
