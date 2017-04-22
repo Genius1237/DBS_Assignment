@@ -3,7 +3,7 @@ var crypto=require('crypto');
 var db=require('../misc/database');
 var key=require('../misc/constants').key;
 var jwt=require('jsonwebtoken');
-var download=require('../misc/qproc');
+var download=require('../misc/qproc2');
 var router = express.Router();
 
 //POST request, for login

@@ -64,13 +64,15 @@ function giveType(val)	{
 	}
 	return 's';
 }
-workbook  = { SheetNames:[], Sheets:{} };
-workbook.SheetNames.push('Buy');
-workbook.SheetNames.push('Sell');
-worksheet1 = {};
-worksheet2 = {};
-var connection = db();
+
 module.exports=function(res,query1,params1,query2,params2){
+	workbook  = { SheetNames:[], Sheets:{} };
+	workbook.SheetNames.push('Sell');
+	workbook.SheetNames.push('Buy');
+	worksheet1 = {};
+	worksheet2 = {};
+	var connection = db();
+	var t=(new Date).getTime();
 	connection.query(query1,params1,function(error,results) {
 		if(error)
 		{
@@ -133,73 +135,70 @@ module.exports=function(res,query1,params1,query2,params2){
 				//console.log(workbook.Sheets);
 				//res.sendFile(path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
 			}
-			var t=(new Date).getTime();
-			xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
+			connection.query(query2,params2,function(error,results) {
+				if(error)
+				{
+					console.log(error);
+					res.sendStatus(404);
+				}
+				else
+				{
+					if(results==null || results.length==0)
+					{
+						var sheet1 = workbook.SheetNames[1];
+						workbook.Sheets[sheet1] = worksheet2;
+						//res.send("No Results");
+					}
+					else
+					{
+						var uy = Object.keys(results[0]).length;
+						var ly = 1;
+						var lx = 2;
+						var ux = results.length;
+						//console.log(ux);
+						var i=0;
+						var j=0;
+						worksheet2['!ref'] = getStr(1,false)+getStr(1,true)+":"+getStr(uy,false)+getStr(ux+1,true);
+						var count = 1;
+						for(var temp in results[0])
+						{
+							var cell = getStr(count,false)+getStr(1,true);
+							count++;
+							var obj = {};
+							//console.log(v+" "+giveType(results[0][temp]));
+							obj.t = 's';
+							obj.v = temp;
+							obj.w = temp;
+							worksheet2[cell] = obj;
+						}
+						var size = results.length;
+						for(i=0;i<size;i++)
+						{
+							count = 1;
+							for(var temp in results[i])
+							{
+								var cell = getStr(count,false)+getStr(i+2,true);
+								var obj = {};
+								obj.t = giveType(results[0][temp]);
+								obj.v = results[i][temp];
+								obj.w = results[i][temp];
+								worksheet2[cell] = obj;
+								count++;
+							}
+						}
+						//console.log(worksheet2);
+						var sheet1 = workbook.SheetNames[1];
+						workbook.Sheets[sheet1] = worksheet2;
+						//
+						//xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
+						//console.log(workbook.Sheets);
+						//
+					}
+					xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
+					res.sendFile(path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
+				}
+			});
 		}
 		//console.log(workbook);
-	});
-	connection.query(query2,params2,function(error,results) {
-		if(error)
-		{
-			console.log(error);
-			res.sendStatus(404);
-		}
-		else
-		{
-			if(results==null || results.length==0)
-			{
-				var sheet1 = workbook.SheetNames[1];
-				workbook.Sheets[sheet1] = worksheet2;
-				//res.send("No Results");
-			}
-			else
-			{
-				var uy = Object.keys(results[0]).length;
-				var ly = 1;
-				var lx = 2;
-				var ux = results.length;
-				//console.log(ux);
-				var i=0;
-				var j=0;
-				worksheet2['!ref'] = getStr(1,false)+getStr(1,true)+":"+getStr(uy,false)+getStr(ux+1,true);
-				var count = 1;
-				for(var temp in results[0])
-				{
-					var cell = getStr(count,false)+getStr(1,true);
-					count++;
-					var obj = {};
-					//console.log(v+" "+giveType(results[0][temp]));
-					obj.t = 's';
-					obj.v = temp;
-					obj.w = temp;
-					worksheet2[cell] = obj;
-				}
-				var size = results.length;
-				for(i=0;i<size;i++)
-				{
-					count = 1;
-					for(var temp in results[i])
-					{
-						var cell = getStr(count,false)+getStr(i+2,true);
-						var obj = {};
-						obj.t = giveType(results[0][temp]);
-						obj.v = results[i][temp];
-						obj.w = results[i][temp];
-						worksheet2[cell] = obj;
-						count++;
-					}
-				}
-				//console.log(worksheet2);
-				var sheet1 = workbook.SheetNames[1];
-				workbook.Sheets[sheet1] = worksheet2;
-				//
-				//xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
-				//console.log(workbook.Sheets);
-				//
-			}
-			var t=(new Date).getTime();
-			xlsx.writeFile(workbook,path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
-			res.sendFile(path.join(__dirname,'../public/xlsx/')+t+'.xlsx');
-		}
 	});
 };
