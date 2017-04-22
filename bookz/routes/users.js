@@ -242,7 +242,7 @@ router.get('/items',function(req,res){
 
 	var q1="SELECT name as 'Name',description as 'Description',price as 'Price' from ITEM,ITEM_SELL WHERE ITEM._id=ITEM_SELL.link_id AND ITEM_SELL.user=?";
 	var params=[id];
-	var q1="SELECT name as 'Name',description as 'Description',price as 'Price' from ITEM,ITEM_BUY WHERE ITEM._id=ITEM_BUY.link_id AND ITEM_BUY.user=?";
+	var q2="SELECT name as 'Name',description as 'Description',price as 'Price' from ITEM,ITEM_BUY WHERE ITEM._id=ITEM_BUY.link_id AND ITEM_BUY.user=?";
 	download(res,q1,params,q2,params);
 });
 
